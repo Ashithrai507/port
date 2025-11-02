@@ -188,18 +188,19 @@
 
         .calendar-day {
             aspect-ratio: 1;
-            min-height: 80px;
+            min-height: 100px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(102, 126, 234, 0.2);
             border-radius: 12px;
-            padding: 10px;
+            padding: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             justify-content: flex-start;
+            overflow: hidden;
         }
 
         .calendar-day:hover {
@@ -215,16 +216,7 @@
         }
 
         .calendar-day.has-event::after {
-            content: '';
-            position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 6px;
-            height: 6px;
-            background: #667eea;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.6);
+            display: none;
         }
 
         .calendar-day.other-month {
@@ -238,15 +230,47 @@
         }
 
         .day-number {
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 700;
             color: #f5f5f7;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            width: 100%;
         }
 
-        .day-event-icon {
-            font-size: 24px;
-            margin-top: auto;
+        .day-events-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            max-height: calc(100% - 24px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+
+        .day-event-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .day-event-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.5);
+        }
+
+        .day-event-count {
+            font-size: 9px;
+            color: #667eea;
+            margin-top: 2px;
+            font-weight: 600;
         }
 
         .event-detail-modal {
@@ -273,7 +297,7 @@
             padding: 50px;
             border-radius: 25px;
             border: 2px solid rgba(102, 126, 234, 0.3);
-            max-width: 700px;
+            max-width: 800px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
@@ -305,53 +329,62 @@
         }
 
         .event-detail-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
             margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 1px solid rgba(102, 126, 234, 0.2);
         }
 
-        .event-detail-icon {
-            font-size: 80px;
+        .event-detail-date-header {
+            color: #667eea;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
         }
 
-        .event-detail-info h3 {
-            font-size: 32px;
-            margin-bottom: 10px;
+        .events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .event-card-detail {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .event-card-detail:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #667eea;
+        }
+
+        .event-card-detail h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
             color: #f5f5f7;
         }
 
-        .event-detail-date {
-            color: #667eea;
+        .event-card-detail p {
             font-size: 16px;
-            font-weight: 600;
-        }
-
-        .event-detail-body {
-            margin-bottom: 30px;
-        }
-
-        .event-detail-body p {
-            font-size: 18px;
             line-height: 1.8;
             color: #86868b;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .event-detail-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
 
-        .event-detail-actions {
+        .event-card-actions {
             display: flex;
-            gap: 15px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(102, 126, 234, 0.2);
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(102, 126, 234, 0.1);
         }
 
         .timeline-preview {
@@ -888,6 +921,7 @@
             opacity: 0;
             transform: translateY(80px);
             transition: all 1s ease;
+            cursor: pointer;
         }
 
         .project-card.visible {
@@ -911,7 +945,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 80px;
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
             position: relative;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
@@ -999,6 +1035,7 @@
             transition: all 0.8s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .achievement-card::before {
@@ -1041,6 +1078,24 @@
             font-size: 16px;
         }
 
+        .achievement-card .view-details {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            color: #667eea;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover .view-details {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+
         /* Certificates Section */
         #certificates {
             background: linear-gradient(180deg, #000 0%, #0a0a0f 100%);
@@ -1063,6 +1118,7 @@
             opacity: 0;
             transform: translateX(-100px);
             transition: all 1s ease;
+            cursor: pointer;
         }
 
         .certificate-card.visible {
@@ -1084,7 +1140,7 @@
         }
 
         .cert-icon {
-            font-size: 80px;
+            font-size: 72px;
             min-width: 100px;
         }
 
@@ -1104,6 +1160,24 @@
             color: #667eea;
             font-size: 14px;
             font-weight: 500;
+        }
+
+        .cert-info .view-details {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            color: #667eea;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .certificate-card:hover .view-details {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
         }
 
         /* Skills Section */
@@ -1127,6 +1201,7 @@
             opacity: 0;
             transform: translateY(50px);
             transition: all 0.8s ease;
+            cursor: pointer;
         }
 
         .skill-card.visible {
@@ -1151,6 +1226,7 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             overflow: hidden;
+            margin-bottom: 15px;
         }
 
         .skill-bar {
@@ -1181,11 +1257,104 @@
 
         .skill-percent {
             display: block;
-            margin-top: 12px;
             text-align: right;
             font-size: 14px;
             color: #667eea;
             font-weight: 600;
+        }
+
+        .skill-card .view-details {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 16px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 15px;
+            color: #667eea;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover .view-details {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+
+        /* Detail Modal for Projects, Achievements, etc */
+        .detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .detail-modal.active {
+            display: flex;
+        }
+
+        .detail-modal-content {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            padding: 50px;
+            border-radius: 25px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .detail-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f5f5f7;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .detail-modal-close:hover {
+            background: rgba(234, 102, 102, 0.2);
+            border-color: #ea6666;
+            transform: rotate(90deg);
+        }
+
+        .detail-modal-header h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #f5f5f7;
+        }
+
+        .detail-modal-body p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #86868b;
+            margin-bottom: 20px;
+        }
+
+        .detail-modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         /* Contact Section */
@@ -1417,21 +1586,23 @@
         <div class="event-detail-content">
             <div class="event-detail-close" onclick="closeEventDetail()">×</div>
             <div class="event-detail-header">
-                <div class="event-detail-icon" id="detailIcon">🚀</div>
-                <div class="event-detail-info">
-                    <h3 id="detailTitle">Event Title</h3>
-                    <p class="event-detail-date" id="detailDate">November 1, 2025</p>
-                </div>
+                <h3 class="event-detail-date-header" id="detailDateHeader">November 1, 2025</h3>
             </div>
-            <div class="event-detail-body">
-                <p id="detailDescription">Event description goes here...</p>
+            <div class="events-list" id="eventsList">
+                <!-- Events for selected day will be inserted here -->
             </div>
-            <div class="event-detail-tags" id="detailTags">
-                <!-- Tags will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Generic Detail Modal for Projects, Achievements, Certificates, Skills -->
+    <div class="detail-modal" id="detailModal">
+        <div class="detail-modal-content">
+            <div class="detail-modal-close" onclick="closeDetailModal()">×</div>
+            <div class="detail-modal-header">
+                <h2 id="detailModalTitle">Title</h2>
             </div>
-            <div class="event-detail-actions">
-                <button class="edit-btn" id="detailEditBtn" onclick="editEventFromDetail()">✏️ Edit</button>
-                <button class="delete-btn" id="detailDeleteBtn" onclick="deleteEventFromDetail()">🗑️ Delete</button>
+            <div class="detail-modal-body" id="detailModalBody">
+                <!-- Content will be inserted here -->
             </div>
         </div>
     </div>
@@ -1507,10 +1678,11 @@
     <section id="achievements">
         <h2 class="section-title">Achievements</h2>
         <div class="achievements-container">
-            <div class="achievement-card">
+            <div class="achievement-card" onclick="showAchievementDetail('hackathon')">
                 <div class="achievement-icon">🏆</div>
                 <h3>College Level Hackathon 2025</h3>
                 <p>Secured top 10 position demonstrating exceptional problem-solving skills</p>
+                <span class="view-details">View Details →</span>
             </div>
         </div>
     </section>
@@ -1519,30 +1691,33 @@
     <section id="certificates">
         <h2 class="section-title">Certificates</h2>
         <div class="certificates-container">
-            <div class="certificate-card">
+            <div class="certificate-card" onclick="showCertificateDetail('aws')">
                 <div class="cert-icon">☁️</div>
                 <div class="cert-info">
                     <h3>AWS Certified Solutions Architect</h3>
                     <p>Comprehensive certification demonstrating expertise in designing distributed systems on AWS platform.</p>
                     <p class="cert-date">Issued: January 2024 | Valid until: January 2027</p>
+                    <span class="view-details">View Details →</span>
                 </div>
             </div>
 
-            <div class="certificate-card">
+            <div class="certificate-card" onclick="showCertificateDetail('langchain')">
                 <div class="cert-icon">🤖</div>
                 <div class="cert-info">
                     <h3>Implementing AI Agents with LangChain</h3>
                     <p>Advanced course on implementing effective AI agent development using the LangChain framework.</p>
                     <p class="cert-date">Coursera | September 2025</p>
+                    <span class="view-details">View Details →</span>
                 </div>
             </div>
 
-            <div class="certificate-card">
+            <div class="certificate-card" onclick="showCertificateDetail('ibm')">
                 <div class="cert-icon">🧠</div>
                 <div class="cert-info">
                     <h3>Machine Learning by IBM</h3>
                     <p>Comprehensive machine learning course covering supervised and unsupervised learning algorithms.</p>
                     <p class="cert-date">IBM | May 2025</p>
+                    <span class="view-details">View Details →</span>
                 </div>
             </div>
         </div>
@@ -1552,52 +1727,58 @@
     <section id="skills">
         <h2 class="section-title">Technical Skills</h2>
         <div class="skills-container">
-            <div class="skill-card">
+            <div class="skill-card" onclick="showSkillDetail('java')">
                 <h3>Java</h3>
                 <div class="skill-bar-wrapper">
                     <div class="skill-bar" data-percent="45"></div>
                 </div>
                 <span class="skill-percent">45%</span>
+                <span class="view-details">View Projects →</span>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card" onclick="showSkillDetail('c')">
                 <h3>C</h3>
                 <div class="skill-bar-wrapper">
                     <div class="skill-bar" data-percent="70"></div>
                 </div>
                 <span class="skill-percent">70%</span>
+                <span class="view-details">View Projects →</span>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card" onclick="showSkillDetail('python')">
                 <h3>Python</h3>
                 <div class="skill-bar-wrapper">
                     <div class="skill-bar" data-percent="75"></div>
                 </div>
                 <span class="skill-percent">75%</span>
+                <span class="view-details">View Projects →</span>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card" onclick="showSkillDetail('mongodb')">
                 <h3>MongoDB</h3>
                 <div class="skill-bar-wrapper">
                     <div class="skill-bar" data-percent="55"></div>
                 </div>
                 <span class="skill-percent">55%</span>
+                <span class="view-details">View Projects →</span>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card" onclick="showSkillDetail('mysql')">
                 <h3>MySQL</h3>
                 <div class="skill-bar-wrapper">
                     <div class="skill-bar" data-percent="85"></div>
                 </div>
                 <span class="skill-percent">85%</span>
+                <span class="view-details">View Projects →</span>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card" onclick="showSkillDetail('git')">
                 <h3>Git & GitHub</h3>
                 <div class="skill-bar-wrapper">
                     <div class="skill-bar" data-percent="90"></div>
                 </div>
                 <span class="skill-percent">90%</span>
+                <span class="view-details">View Projects →</span>
             </div>
         </div>
     </section>
@@ -1636,19 +1817,38 @@
     <script>
         let currentEditId = null;
         let eventIdCounter = 7;
-        let currentMonth = 10; // November (0-indexed)
+        let currentMonth = 10;
         let currentYear = 2025;
-        let selectedEventId = null;
+        let selectedDate = null;
 
-        // Events data - using date as key for calendar
-        const eventsData = {
-            '2025-11-01': { id: 1, icon: '🚀', title: 'Portfolio Website Launch', description: 'Successfully launched my new portfolio website with modern animations and responsive design. Implemented smooth scroll effects and interactive elements.', tags: ['Web Development', 'Design'] },
-            '2025-10-28': { id: 2, icon: '📚', title: 'Attended AI/ML Workshop', description: 'Participated in a comprehensive workshop on Advanced Machine Learning techniques. Learned about transformer models and their applications in NLP.', tags: ['Workshop', 'AI/ML'] },
-            '2025-10-20': { id: 3, icon: '💻', title: 'Completed Cloud Server Project', description: 'Finished development and deployment of self-built cloud server with Docker containerization. Implemented user authentication and file storage features.', tags: ['Project', 'Cloud'] },
-            '2025-10-15': { id: 4, icon: '🎓', title: 'Semester Exams Preparation', description: 'Started intensive preparation for mid-semester examinations. Focused on core AI subjects including Neural Networks and Deep Learning.', tags: ['Academic', 'Study'] },
-            '2025-10-10': { id: 5, icon: '🤝', title: 'Tech Community Meet-up', description: 'Attended local tech community meetup focused on emerging AI technologies. Networked with industry professionals and fellow developers.', tags: ['Networking', 'Community'] },
-            '2025-09-25': { id: 6, icon: '🏆', title: 'Hackathon Achievement', description: 'Secured top 10 position in college-level hackathon. Developed an innovative solution for real-time data processing using Python and Flask.', tags: ['Achievement', 'Competition'] }
-        };
+        // Events data - now allows multiple events per day
+        const eventsData = {};
+
+        // Initialize with sample events
+        function initializeEvents() {
+            addEventToData('2025-11-01', { id: 1, icon: '🚀', title: 'Portfolio Website Launch', description: 'Successfully launched my new portfolio website with modern animations and responsive design. Implemented smooth scroll effects and interactive elements.', tags: ['Web Development', 'Design'] });
+            addEventToData('2025-10-28', { id: 2, icon: '📚', title: 'Attended AI/ML Workshop', description: 'Participated in a comprehensive workshop on Advanced Machine Learning techniques. Learned about transformer models and their applications in NLP.', tags: ['Workshop', 'AI/ML'] });
+            addEventToData('2025-10-20', { id: 3, icon: '💻', title: 'Completed Cloud Server Project', description: 'Finished development and deployment of self-built cloud server with Docker containerization. Implemented user authentication and file storage features.', tags: ['Project', 'Cloud'] });
+            addEventToData('2025-10-15', { id: 4, icon: '🎓', title: 'Semester Exams Preparation', description: 'Started intensive preparation for mid-semester examinations. Focused on core AI subjects including Neural Networks and Deep Learning.', tags: ['Academic', 'Study'] });
+            addEventToData('2025-10-10', { id: 5, icon: '🤝', title: 'Tech Community Meet-up', description: 'Attended local tech community meetup focused on emerging AI technologies. Networked with industry professionals and fellow developers.', tags: ['Networking', 'Community'] });
+            addEventToData('2025-09-25', { id: 6, icon: '🏆', title: 'Hackathon Achievement', description: 'Secured top 10 position in college-level hackathon. Developed an innovative solution for real-time data processing using Python and Flask.', tags: ['Achievement', 'Competition'] });
+        }
+
+        function addEventToData(dateStr, event) {
+            if (!eventsData[dateStr]) {
+                eventsData[dateStr] = [];
+            }
+            eventsData[dateStr].push(event);
+        }
+
+        function removeEventFromData(dateStr, eventId) {
+            if (eventsData[dateStr]) {
+                eventsData[dateStr] = eventsData[dateStr].filter(e => e.id !== eventId);
+                if (eventsData[dateStr].length === 0) {
+                    delete eventsData[dateStr];
+                }
+            }
+        }
 
         // Toggle entire timeline section
         function toggleTimelineSection() {
@@ -1726,17 +1926,41 @@
             if (isToday) cell.classList.add('today');
             
             const dateStr = `${currentYear}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            const event = eventsData[dateStr];
+            const events = eventsData[dateStr];
             
-            if (event && !isOtherMonth) {
+            const dayNumberDiv = document.createElement('div');
+            dayNumberDiv.className = 'day-number';
+            dayNumberDiv.textContent = day;
+            cell.appendChild(dayNumberDiv);
+            
+            if (events && events.length > 0 && !isOtherMonth) {
                 cell.classList.add('has-event');
-                cell.innerHTML = `
-                    <div class="day-number">${day}</div>
-                    <div class="day-event-icon">${event.icon}</div>
-                `;
+                
+                const eventsList = document.createElement('div');
+                eventsList.className = 'day-events-list';
+                
+                // Show max 3 events, rest indicated by count
+                const displayCount = Math.min(events.length, 3);
+                for (let i = 0; i < displayCount; i++) {
+                    const eventItem = document.createElement('div');
+                    eventItem.className = 'day-event-item';
+                    eventItem.textContent = `${events[i].icon} ${events[i].title}`;
+                    eventItem.onclick = (e) => {
+                        e.stopPropagation();
+                        showEventDetail(dateStr);
+                    };
+                    eventsList.appendChild(eventItem);
+                }
+                
+                if (events.length > 3) {
+                    const moreCount = document.createElement('div');
+                    moreCount.className = 'day-event-count';
+                    moreCount.textContent = `+${events.length - 3} more`;
+                    eventsList.appendChild(moreCount);
+                }
+                
+                cell.appendChild(eventsList);
                 cell.onclick = () => showEventDetail(dateStr);
-            } else {
-                cell.innerHTML = `<div class="day-number">${day}</div>`;
             }
             
             return cell;
@@ -1760,25 +1984,38 @@
             generateCalendar();
         }
 
-        // Show event detail modal
+        // Show event detail modal with all events for a day
         function showEventDetail(dateStr) {
-            const event = eventsData[dateStr];
-            if (!event) return;
+            const events = eventsData[dateStr];
+            if (!events || events.length === 0) return;
             
-            selectedEventId = dateStr;
+            selectedDate = dateStr;
             
-            document.getElementById('detailIcon').textContent = event.icon;
-            document.getElementById('detailTitle').textContent = event.title;
-            document.getElementById('detailDate').textContent = formatDateLong(dateStr);
-            document.getElementById('detailDescription').textContent = event.description;
+            document.getElementById('detailDateHeader').textContent = formatDateLong(dateStr);
             
-            const tagsContainer = document.getElementById('detailTags');
-            tagsContainer.innerHTML = '';
-            event.tags.forEach(tag => {
-                const tagEl = document.createElement('span');
-                tagEl.className = 'timeline-tag';
-                tagEl.textContent = tag;
-                tagsContainer.appendChild(tagEl);
+            const eventsList = document.getElementById('eventsList');
+            eventsList.innerHTML = '';
+            
+            events.forEach(event => {
+                const eventCard = document.createElement('div');
+                eventCard.className = 'event-card-detail';
+                
+                let tagsHTML = '';
+                event.tags.forEach(tag => {
+                    tagsHTML += `<span class="timeline-tag">${tag}</span>`;
+                });
+                
+                eventCard.innerHTML = `
+                    <h3>${event.icon} ${event.title}</h3>
+                    <p>${event.description}</p>
+                    <div class="event-detail-tags">${tagsHTML}</div>
+                    <div class="event-card-actions">
+                        <button class="edit-btn" onclick="editEventFromDetail('${dateStr}', ${event.id})">✏️ Edit</button>
+                        <button class="delete-btn" onclick="deleteEventFromDetail('${dateStr}', ${event.id})">🗑️ Delete</button>
+                    </div>
+                `;
+                
+                eventsList.appendChild(eventCard);
             });
             
             document.getElementById('eventDetailModal').classList.add('active');
@@ -1786,16 +2023,18 @@
 
         function closeEventDetail() {
             document.getElementById('eventDetailModal').classList.remove('active');
-            selectedEventId = null;
+            selectedDate = null;
         }
 
-        function editEventFromDetail() {
-            if (selectedEventId) {
-                const event = eventsData[selectedEventId];
-                currentEditId = selectedEventId;
+        function editEventFromDetail(dateStr, eventId) {
+            const events = eventsData[dateStr];
+            const event = events.find(e => e.id === eventId);
+            
+            if (event) {
+                currentEditId = {dateStr, eventId};
                 
                 document.getElementById('modalTitle').textContent = 'Edit Event';
-                document.getElementById('eventDate').value = selectedEventId;
+                document.getElementById('eventDate').value = dateStr;
                 document.getElementById('eventIcon').value = event.icon;
                 document.getElementById('eventTitle').value = event.title;
                 document.getElementById('eventDescription').value = event.description;
@@ -1806,11 +2045,18 @@
             }
         }
 
-        function deleteEventFromDetail() {
-            if (selectedEventId && confirm('Are you sure you want to delete this event?')) {
-                delete eventsData[selectedEventId];
-                closeEventDetail();
+        function deleteEventFromDetail(dateStr, eventId) {
+            if (confirm('Are you sure you want to delete this event?')) {
+                removeEventFromData(dateStr, eventId);
                 generateCalendar();
+                
+                // Refresh modal if there are still events
+                const events = eventsData[dateStr];
+                if (events && events.length > 0) {
+                    showEventDetail(dateStr);
+                } else {
+                    closeEventDetail();
+                }
             }
         }
 
@@ -1822,6 +2068,7 @@
 
         // Initialize calendar on load
         document.addEventListener('DOMContentLoaded', () => {
+            initializeEvents();
             generateCalendar();
         });
 
@@ -1852,19 +2099,26 @@
             const tags = tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag);
             
             const eventData = {
-                id: currentEditId || eventIdCounter++,
+                id: currentEditId ? currentEditId.eventId : eventIdCounter++,
                 icon: icon,
                 title: title,
                 description: description,
                 tags: tags
             };
 
-            eventsData[date] = eventData;
+            if (currentEditId) {
+                // Update existing event
+                removeEventFromData(currentEditId.dateStr, currentEditId.eventId);
+                addEventToData(date, eventData);
+            } else {
+                // Add new event
+                addEventToData(date, eventData);
+            }
             
             closeEventModal();
             generateCalendar();
             
-            // Navigate to the month of the new event
+            // Navigate to the month of the event
             const eventDate = new Date(date);
             currentMonth = eventDate.getMonth();
             currentYear = eventDate.getFullYear();
@@ -1881,6 +2135,140 @@
         document.getElementById('eventDetailModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeEventDetail();
+            }
+        });
+
+        // Detail modal functions for Projects, Achievements, Certificates, Skills
+        function showProjectDetail(projectId) {
+            const projects = {
+                'bacteria': {
+                    title: 'AI Automated Bacteria Classifier',
+                    description: 'Developed an advanced AI model to classify bacteria species using state-of-the-art image recognition techniques. The model achieved 95% accuracy on the test dataset through deep learning and convolutional neural networks.\n\nKey Features:\n- Real-time bacteria classification\n- Multi-class detection with 20+ species\n- Web-based interface for easy access\n- Integration with laboratory equipment\n\nThis project demonstrates the practical application of AI in healthcare and microbiology, potentially reducing diagnosis time from hours to seconds.',
+                    tags: ['Python', 'TensorFlow', 'Keras', 'OpenCV', 'Deep Learning', 'Healthcare']
+                },
+                'cloud': {
+                    title: 'Self-Built Cloud Server',
+                    description: 'Designed and implemented a robust cloud server infrastructure using Python and Flask. The server features comprehensive file storage capabilities, user authentication, and RESTful API endpoints for seamless integration.\n\nKey Features:\n- Scalable file storage system\n- JWT-based authentication\n- RESTful API with full CRUD operations\n- Docker containerization for easy deployment\n- AWS hosting with load balancing\n\nThe project showcases full-stack development skills and cloud infrastructure management.',
+                    tags: ['Python', 'Flask', 'Docker', 'AWS', 'REST API', 'Cloud Computing']
+                }
+            };
+            
+            const project = projects[projectId];
+            if (project) {
+                showDetailModal(project.title, project.description, project.tags);
+            }
+        }
+
+        function showAchievementDetail(achievementId) {
+            const achievements = {
+                'hackathon': {
+                    title: 'College Level Hackathon 2025 - Top 10',
+                    description: 'Secured top 10 position in the college-level hackathon competition among 50+ participating teams. The 24-hour coding marathon challenged us to develop an innovative solution for real-time data processing.\n\nOur Solution:\n- Built a real-time analytics dashboard\n- Implemented Python and Flask backend\n- Created responsive web interface\n- Integrated multiple data sources\n- Presented to industry judges\n\nThis achievement demonstrates problem-solving abilities, teamwork, and the capacity to deliver under pressure.',
+                    tags: ['Achievement', 'Competition', 'Python', 'Flask', 'Data Processing', 'Teamwork']
+                }
+            };
+            
+            const achievement = achievements[achievementId];
+            if (achievement) {
+                showDetailModal(achievement.title, achievement.description, achievement.tags);
+            }
+        }
+
+        function showCertificateDetail(certId) {
+            const certificates = {
+                'aws': {
+                    title: 'AWS Certified Solutions Architect',
+                    description: 'Comprehensive professional certification demonstrating expertise in designing distributed systems on the Amazon Web Services platform.\n\nSkills Validated:\n- Designing resilient architectures\n- High-performing systems\n- Secure applications and architectures\n- Cost-optimized architectures\n- Operations excellence\n\nIssued: January 2024\nValid until: January 2027\n\nThis certification validates the ability to design and deploy scalable, highly available, and fault-tolerant systems on AWS.',
+                    tags: ['AWS', 'Cloud Architecture', 'Solutions Design', 'Certification']
+                },
+                'langchain': {
+                    title: 'Implementing AI Agents with LangChain - Coursera',
+                    description: 'Advanced specialization course focused on implementing effective AI agents using the LangChain framework for building applications with large language models.\n\nCourse Topics:\n- LangChain fundamentals\n- Building AI agents\n- Prompt engineering\n- Memory systems\n- Tool integration\n- Production deployment\n\nCompleted: September 2025\n\nThis course provided hands-on experience in developing intelligent AI agents capable of complex reasoning and task execution.',
+                    tags: ['AI', 'LangChain', 'LLM', 'Python', 'Coursera']
+                },
+                'ibm': {
+                    title: 'Machine Learning by IBM',
+                    description: 'Comprehensive machine learning course covering fundamental and advanced concepts in both supervised and unsupervised learning algorithms.\n\nCourse Coverage:\n- Supervised Learning (Regression, Classification)\n- Unsupervised Learning (Clustering, Dimensionality Reduction)\n- Model evaluation and validation\n- Feature engineering\n- Practical implementations\n\nCompleted: May 2025\n\nThis course provided a solid foundation in machine learning theory and practical application using Python and scikit-learn.',
+                    tags: ['Machine Learning', 'IBM', 'Python', 'Data Science', 'AI']
+                }
+            };
+            
+            const cert = certificates[certId];
+            if (cert) {
+                showDetailModal(cert.title, cert.description, cert.tags);
+            }
+        }
+
+        function showSkillDetail(skillId) {
+            const skills = {
+                'java': {
+                    title: 'Java Programming',
+                    description: 'Proficiency Level: 45%\n\nExperience with Java programming language including:\n- Object-Oriented Programming principles\n- Data structures and algorithms\n- Exception handling\n- File I/O operations\n- Basic GUI development\n\nProjects completed:\n- Console-based applications\n- Academic assignments\n- Small utility programs',
+                    tags: ['Java', 'OOP', 'Programming']
+                },
+                'c': {
+                    title: 'C Programming',
+                    description: 'Proficiency Level: 70%\n\nStrong foundation in C programming including:\n- Memory management and pointers\n- Data structures implementation\n- System-level programming\n- Algorithm optimization\n- File handling\n\nProjects completed:\n- Custom data structure implementations\n- System utilities\n- Performance-critical applications',
+                    tags: ['C', 'Systems Programming', 'Algorithms']
+                },
+                'python': {
+                    title: 'Python Programming',
+                    description: 'Proficiency Level: 75%\n\nAdvanced Python programming skills including:\n- Object-Oriented Programming\n- Web development (Flask, Django)\n- Data analysis (Pandas, NumPy)\n- Machine Learning (TensorFlow, scikit-learn)\n- API development\n\nProjects completed:\n- AI bacteria classifier\n- Cloud server application\n- Multiple automation scripts\n- Data analysis projects',
+                    tags: ['Python', 'AI/ML', 'Web Development', 'Data Science']
+                },
+                'mongodb': {
+                    title: 'MongoDB',
+                    description: 'Proficiency Level: 55%\n\nNoSQL database experience with MongoDB:\n- Document-based data modeling\n- CRUD operations\n- Aggregation pipelines\n- Indexing strategies\n- Integration with Python applications\n\nUsed in projects:\n- User data storage\n- Application backend\n- Real-time data processing',
+                    tags: ['MongoDB', 'NoSQL', 'Database', 'Backend']
+                },
+                'mysql': {
+                    title: 'MySQL',
+                    description: 'Proficiency Level: 85%\n\nStrong relational database skills with MySQL:\n- Database design and normalization\n- Complex SQL queries and joins\n- Stored procedures and triggers\n- Performance optimization\n- Database security\n\nProjects completed:\n- Multiple full-stack applications\n- Data management systems\n- Report generation systems',
+                    tags: ['MySQL', 'SQL', 'Database', 'Backend']
+                },
+                'git': {
+                    title: 'Git & GitHub',
+                    description: 'Proficiency Level: 90%\n\nExpert-level version control skills:\n- Git workflow and branching strategies\n- Collaboration and pull requests\n- Code review processes\n- Repository management\n- CI/CD integration\n\nDaily usage:\n- All projects versioned with Git\n- Active GitHub profile\n- Collaborative development\n- Open-source contributions',
+                    tags: ['Git', 'GitHub', 'Version Control', 'DevOps']
+                }
+            };
+            
+            const skill = skills[skillId];
+            if (skill) {
+                showDetailModal(skill.title, skill.description, skill.tags);
+            }
+        }
+
+        function showDetailModal(title, description, tags) {
+            document.getElementById('detailModalTitle').textContent = title;
+            
+            const body = document.getElementById('detailModalBody');
+            
+            // Split description by line breaks and create paragraphs
+            const paragraphs = description.split('\n').filter(p => p.trim());
+            let bodyHTML = '';
+            paragraphs.forEach(para => {
+                bodyHTML += `<p>${para}</p>`;
+            });
+            
+            let tagsHTML = '<div class="detail-modal-tags">';
+            tags.forEach(tag => {
+                tagsHTML += `<span class="timeline-tag">${tag}</span>`;
+            });
+            tagsHTML += '</div>';
+            
+            body.innerHTML = bodyHTML + tagsHTML;
+            
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.remove('active');
+        }
+
+        document.getElementById('detailModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDetailModal();
             }
         });
 
