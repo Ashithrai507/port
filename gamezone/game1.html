@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Game — Click Target</title>
+  <style>
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto;background:#05050a;color:#fff}
+    .wrap{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+    .playarea{width:360px;height:420px;background:#0b0b12;border-radius:12px;position:relative;overflow:hidden;border:1px solid rgba(102,126,234,0.08)}
+    .target{position:absolute;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#ff6b6b,#ff9a6b);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 30px rgba(255,107,107,0.15)}
+    .hud{display:flex;gap:12px;align-items:center}
+    .btn{padding:8px 12px;border-radius:8px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h2>Click Target — Demo</h2>
+    <div class="hud"><div>Score: <span id="score">0</span></div><button class="btn" id="restart">Restart</button><a class="btn" href="index.html">← Back</a></div>
+    <div class="playarea" id="area"></div>
+    <p style="color:#bdbdc2">Click the moving target to earn points. This is a simple demo to show an interactive game page.</p>
+  </div>
+
+  <script>
+    const area = document.getElementById('area');
+    const scoreEl = document.getElementById('score');
+    const restart = document.getElementById('restart');
+    let score = 0;
+    let target = null;
+    let interval = null;
+
+    function spawn(){
+      if(target) target.remove();
+      target = document.createElement('div');
+      target.className = 'target';
+      target.textContent = '🎯';
+      area.appendChild(target);
+      moveTarget();
+      target.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        score++;
+        scoreEl.textContent = score;
+        // make it jump
+        moveTarget(true);
+      });
+    }
+
+    function moveTarget(quick=false){
+      const w = area.clientWidth - 60;
+      const h = area.clientHeight - 60;
+      const left = Math.floor(Math.random()*w);
+      const top = Math.floor(Math.random()*h);
+      target.style.left = left + 'px';
+      target.style.top = top + 'px';
+      if(interval) clearTimeout(interval);
+      interval = setTimeout(()=>moveTarget(), quick?400:1000 + Math.random()*1200);
+    }
+
+    function start(){ score = 0; scoreEl.textContent = score; spawn(); }
+    restart.addEventListener('click', start);
+
+    // start on load
+    start();
+
+    // stop when leaving page
+    window.addEventListener('beforeunload', ()=>{ if(interval) clearTimeout(interval); });
+  </script>
+</body>
+</html>

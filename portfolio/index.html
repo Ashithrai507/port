@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ashith Rai — Portfolio Package</title>
+  <style>
+    :root{--bg:#050509;--card:#0a0a0f;--accent:#667eea}
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    body{background:linear-gradient(180deg,#000, #050511);color:#f5f5f7;padding:28px}
+    .header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    h1{font-size:20px;margin:0}
+    .close{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#f5f5f7;padding:8px 12px;border-radius:10px;cursor:pointer}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px}
+    .card{background:linear-gradient(135deg,rgba(102,126,234,0.04),rgba(118,75,162,0.03));border:1px solid rgba(102,126,234,0.08);border-radius:14px;padding:16px}
+    .thumb{height:140px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:40px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;margin-bottom:12px}
+    .title{font-weight:700;margin-bottom:8px}
+    .desc{color:#bdbdc2;font-size:14px;margin-bottom:12px}
+    .meta{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);color:#9fb0ff}
+    footer{margin-top:26px;color:#9a9aa0;font-size:13px}
+    a.button{display:inline-block;padding:8px 12px;border-radius:10px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;text-decoration:none;font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Portfolio Package</h1>
+    <div>
+      <button class="close" onclick="closeParent()">Close</button>
+    </div>
+  </div>
+
+  <p style="color:#bdbdc2;margin-top:8px">A compact package of portfolio items. Click any project to view details or open externally.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="thumb">🔬</div>
+      <div class="title">AI Bacteria Classifier</div>
+      <div class="desc">Convolutional model for bacteria image classification. Deployed with Flask & Docker.</div>
+      <div class="meta"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">OpenCV</span></div>
+    </div>
+
+    <div class="card">
+      <div class="thumb">☁️</div>
+      <div class="title">Self-Built Cloud Server</div>
+      <div class="desc">Custom cloud server with file storage, auth and REST APIs.</div>
+      <div class="meta"><span class="tag">Flask</span><span class="tag">Docker</span><span class="tag">AWS</span></div>
+    </div>
+
+    <div class="card">
+      <div class="thumb">🎮</div>
+      <div class="title">Game Projects (Demo)</div>
+      <div class="desc">Showcasing small interactive games and demos—open GameZone for playable demos.</div>
+      <div style="margin-top:12px"><a class="button" href="/gamezone/index.html">Open GameZone</a></div>
+    </div>
+
+    <div class="card">
+      <div class="thumb">🤖</div>
+      <div class="title">AI Agents with LangChain</div>
+      <div class="desc">Agent architecture and pipelines built during specialization.</div>
+      <div class="meta"><span class="tag">LangChain</span><span class="tag">LLM</span></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>To edit this package, update the files in the <code>/portfolio</code> folder. This is a standalone package which the main site opens in an iframe.</p>
+  </footer>
+
+  <script>
+    function closeParent(){
+      try{
+        if(window.parent && typeof window.parent.closePortfolioModal === 'function'){
+          window.parent.closePortfolioModal();
+          return;
+        }
+      }catch(e){/* cross-origin or unavailable */}
+      // fallback
+      if(history.length>1) history.back();
+    }
+  </script>
+</body>
+</html>

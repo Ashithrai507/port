@@ -771,6 +771,56 @@
             display: flex;
         }
 
+        /* Portfolio package modal - hosts an iframe to the portfolio package */
+        .package-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
+            z-index: 3500;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .package-modal.active {
+            display: flex;
+        }
+
+        .package-frame {
+            width: 100%;
+            max-width: 1100px;
+            height: 85vh;
+            border: none;
+            border-radius: 18px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+            background: #0a0a0f;
+            overflow: hidden;
+            border: 1px solid rgba(102,126,234,0.12);
+        }
+
+        .package-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            z-index: 3600;
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(102,126,234,0.18);
+            border-radius: 50%;
+            color: #f5f5f7;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
         .modal-content {
             background: #0a0a0f;
             padding: 40px;
@@ -1530,6 +1580,8 @@
                 <a href="#certificates">Certificates</a>
                 <a href="#skills">Skills</a>
                 <a href="#contact">Contact</a>
+                <a href="#" onclick="openPortfolioModal(); return false;">Portfolio</a>
+                <a href="/gamezone/index.html">GameZone</a>
             </div>
         </div>
     </nav>
@@ -1608,6 +1660,12 @@
     </div>
 
     <!-- Add/Edit Event Modal -->
+        <!-- Portfolio Package Modal (loads portfolio/index.html inside an iframe) -->
+        <div class="package-modal" id="portfolioModal">
+            <button class="package-close" id="portfolioClose" aria-label="Close portfolio">×</button>
+            <iframe src="/portfolio/index.html" class="package-frame" id="portfolioFrame" title="Portfolio Package"></iframe>
+        </div>
+
     <div class="modal-overlay" id="eventModal">
         <div class="modal-content">
             <h2 class="modal-title" id="modalTitle">Add New Event</h2>
@@ -1831,7 +1889,7 @@
             addEventToData('2025-10-20', { id: 3, icon: '💻', title: 'Completed Cloud Server Project', description: 'Finished development and deployment of self-built cloud server with Docker containerization. Implemented user authentication and file storage features.', tags: ['Project', 'Cloud'] });
             addEventToData('2025-10-15', { id: 4, icon: '🎓', title: 'Semester Exams Preparation', description: 'Started intensive preparation for mid-semester examinations. Focused on core AI subjects including Neural Networks and Deep Learning.', tags: ['Academic', 'Study'] });
             addEventToData('2025-10-10', { id: 5, icon: '🤝', title: 'Tech Community Meet-up', description: 'Attended local tech community meetup focused on emerging AI technologies. Networked with industry professionals and fellow developers.', tags: ['Networking', 'Community'] });
-            addEventToData('2025-09-25', { id: 6, icon: '🏆', title: 'Hackathon Achievement', description: 'Secured top 10 position in college-level hackathon. Developed an innovative solution for real-time data processing using Python and Flask.', tags: ['Achievement', 'Competition'] });
+            addEventToData('2025-09-25', { id: 6, icon: '🏆', title: 'Achievement', description: 'Secured II position in state level Project Expo 2025 held in YIT Moodbiri. Developed a Ai automated Image processing architecture to detect Bacteria colonies.', tags: ['Achievement', 'Competition'] });
         }
 
         function addEventToData(dateStr, event) {
@@ -2162,9 +2220,9 @@
         function showAchievementDetail(achievementId) {
             const achievements = {
                 'hackathon': {
-                    title: 'College Level Hackathon 2025 - Top 10',
-                    description: 'Secured top 10 position in the college-level hackathon competition among 50+ participating teams. The 24-hour coding marathon challenged us to develop an innovative solution for real-time data processing.\n\nOur Solution:\n- Built a real-time analytics dashboard\n- Implemented Python and Flask backend\n- Created responsive web interface\n- Integrated multiple data sources\n- Presented to industry judges\n\nThis achievement demonstrates problem-solving abilities, teamwork, and the capacity to deliver under pressure.',
-                    tags: ['Achievement', 'Competition', 'Python', 'Flask', 'Data Processing', 'Teamwork']
+                    title: 'Secured II in State Level project Expo 2025',
+                    description: 'Achieved second place in the prestigious State Level Project Expo 2025 held in YIT Moodbiri with an innovative AI-driven solution for real-time data processing. The project involved designing a scalable architecture using Python with ML, demonstrating exceptional problem-solving skills and teamwork.\n\nHighlights:\n- Developed a real-time object detection system\n- Utilizing the python as the backend\n- Implemented efficient algorithms for Image processing\n- Collaborated effectively within a team of 4 members\n\nThis achievement reflects strong technical expertise and the ability to deliver impactful solutions under competitive conditions.',
+                    tags: ['Achievement', 'Competition', 'Python', 'Pytorch', 'Image Processing', 'Teamwork']
                 }
             };
             
@@ -2348,6 +2406,28 @@
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
+        });
+
+        // Portfolio package modal controls
+        function openPortfolioModal() {
+            const modal = document.getElementById('portfolioModal');
+            const frame = document.getElementById('portfolioFrame');
+            modal.classList.add('active');
+            // ensure iframe reloads to show latest content
+            frame.src = frame.getAttribute('src');
+        }
+
+        function closePortfolioModal() {
+            const modal = document.getElementById('portfolioModal');
+            const frame = document.getElementById('portfolioFrame');
+            modal.classList.remove('active');
+            // Optionally blank the iframe to stop any running audio/loops
+            // frame.src = 'about:blank';
+        }
+
+        document.getElementById('portfolioClose').addEventListener('click', closePortfolioModal);
+        document.getElementById('portfolioModal').addEventListener('click', function(e) {
+            if (e.target === this) closePortfolioModal();
         });
     </script>
 </body>
