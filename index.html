@@ -3,24 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashith Rai - Portfolio</title>
+    <title>Ashith Rai — AI/ML Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: #0a0b0d;
+            --bg-alt: #101216;
+            --surface: #14171c;
+            --surface-hover: #1a1e24;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-strong: rgba(255, 255, 255, 0.16);
+            --text: #edeef0;
+            --text-muted: #8a8f98;
+            --text-faint: #565b64;
+            --accent: #e8a33d;
+            --accent-soft: rgba(232, 163, 61, 0.1);
+            --accent-dim: rgba(232, 163, 61, 0.35);
+            --status: #5fbf77;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+            --font-body: 'Inter', sans-serif;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-            background: #000;
-            color: #f5f5f7;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
             overflow-x: hidden;
             line-height: 1.6;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 64px 64px;
+            background-attachment: fixed;
+            background-position: center top;
+        }
+
+        ::selection { background: var(--accent-dim); color: var(--text); }
+
+        a { color: inherit; }
+
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         /* Navigation */
@@ -28,20 +64,22 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(20px);
+            background: rgba(10, 11, 13, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid transparent;
             z-index: 1000;
-            padding: 20px 5%;
+            padding: 22px 5%;
             transition: all 0.3s ease;
         }
 
         nav.scrolled {
-            padding: 12px 5%;
-            background: rgba(0, 0, 0, 0.95);
+            padding: 14px 5%;
+            background: rgba(10, 11, 13, 0.92);
+            border-bottom-color: var(--border);
         }
 
         .nav-content {
-            max-width: 1400px;
+            max-width: 1280px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -49,152 +87,270 @@
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav-links a {
-            color: #f5f5f7;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            opacity: 0.8;
-        }
-
-        .nav-links a:hover {
-            opacity: 1;
-        }
-
-        /* Timeline Section */
-        #timeline {
-            background: linear-gradient(180deg, #000 0%, #0a0a0f 50%, #000 100%);
-            padding: 50px 5%;
-            transition: all 0.5s ease;
-        }
-
-        #timeline.collapsed {
-            padding: 30px 5%;
-            min-height: auto;
-        }
-
-        .timeline-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto 50px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .timeline-toggle-btn {
-            padding: 12px 30px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 2px solid #667eea;
-            border-radius: 50px;
-            color: #f5f5f7;
+            font-family: var(--font-mono);
             font-size: 14px;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            letter-spacing: 0.1em;
+            color: var(--text);
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .timeline-toggle-btn:hover {
-            background: rgba(102, 126, 234, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        .logo .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--status);
+            box-shadow: 0 0 8px var(--status);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 34px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-links a:hover { color: var(--text); }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 140px 5% 80px;
+            position: relative;
+        }
+
+        .hero-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .status-line {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 7px 16px;
+            margin-bottom: 36px;
+        }
+
+        .status-line .blink {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--status);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.25; }
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(40px, 6vw, 74px);
+            font-weight: 600;
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+            max-width: 900px;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 span { color: var(--accent); }
+
+        .hero .lede {
+            font-size: clamp(16px, 1.6vw, 19px);
+            color: var(--text-muted);
+            max-width: 620px;
+            margin-bottom: 44px;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            max-width: 720px;
+        }
+
+        .hero-meta-item .label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+
+        .hero-meta-item .value {
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 5%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-faint);
+        }
+
+        .scroll-indicator svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--text-faint);
+            animation: bob 2s ease-in-out infinite;
+        }
+
+        @keyframes bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(4px); }
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 5%;
+            position: relative;
+        }
+
+        .section-inner { max-width: 1280px; margin: 0 auto; }
+
+        .section-head {
+            margin-bottom: 64px;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.7s ease;
+        }
+
+        .section-head.visible { opacity: 1; transform: translateY(0); }
+
+        .section-head h2 {
+            font-family: var(--font-display);
+            font-size: clamp(30px, 4vw, 44px);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-top: 12px;
+        }
+
+        #timeline { background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+        .timeline-toggle-btn {
+            font-family: var(--font-mono);
+            padding: 9px 18px;
+            background: transparent;
+            border: 1px solid var(--border-strong);
+            border-radius: 6px;
+            color: var(--text-muted);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timeline-toggle-btn:hover { border-color: var(--accent-dim); color: var(--text); }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .timeline-content-wrapper {
             max-height: 5000px;
             overflow: hidden;
-            transition: max-height 0.8s ease, opacity 0.8s ease;
+            transition: max-height 0.7s ease, opacity 0.7s ease;
             opacity: 1;
         }
 
-        .timeline-content-wrapper.collapsed {
-            max-height: 0;
-            opacity: 0;
-        }
+        .timeline-content-wrapper.collapsed { max-height: 0; opacity: 0; }
 
-        .calendar-view {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        #timeline.collapsed { padding-bottom: 60px; }
 
         .calendar-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            padding: 0 20px;
+            margin-bottom: 24px;
         }
 
         .calendar-header h3 {
-            font-size: 28px;
-            color: #f5f5f7;
+            font-family: var(--font-mono);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+            letter-spacing: 0.02em;
         }
 
-        .calendar-nav {
-            display: flex;
-            gap: 15px;
-        }
+        .calendar-nav { display: flex; gap: 10px; }
 
         .calendar-nav button {
-            padding: 10px 20px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 10px;
-            color: #667eea;
+            font-family: var(--font-mono);
+            padding: 8px 14px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-muted);
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
+            transition: all 0.2s ease;
+            font-size: 12px;
         }
 
-        .calendar-nav button:hover {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: #667eea;
-        }
+        .calendar-nav button:hover { border-color: var(--accent-dim); color: var(--accent); }
 
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 20px;
-            border: 1px solid rgba(102, 126, 234, 0.1);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         .calendar-day-header {
             text-align: center;
-            padding: 15px 5px;
-            font-size: 14px;
-            font-weight: 700;
-            color: #667eea;
+            padding: 12px 5px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-faint);
+            text-transform: uppercase;
+            background: var(--bg-alt);
         }
 
         .calendar-day {
             aspect-ratio: 1;
-            min-height: 100px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            border-radius: 12px;
+            min-height: 96px;
+            background: var(--bg);
             padding: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            cursor: default;
+            transition: background 0.2s ease;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -203,604 +359,214 @@
             overflow: hidden;
         }
 
-        .calendar-day:hover {
-            background: rgba(102, 126, 234, 0.1);
-            border-color: #667eea;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .calendar-day.has-event {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
-            border-color: #667eea;
-        }
-
-        .calendar-day.has-event::after {
-            display: none;
-        }
-
-        .calendar-day.other-month {
-            opacity: 0.3;
-            pointer-events: none;
-        }
-
-        .calendar-day.today {
-            border: 2px solid #667eea;
-            background: rgba(102, 126, 234, 0.2);
+        .calendar-day.has-event { cursor: pointer; }
+        .calendar-day.has-event:hover { background: var(--surface-hover); }
+        .calendar-day.other-month { opacity: 0.25; pointer-events: none; }
+        .calendar-day.today .day-number {
+            color: var(--bg);
+            background: var(--accent);
+            border-radius: 4px;
+            padding: 1px 6px;
         }
 
         .day-number {
-            font-size: 14px;
-            font-weight: 700;
-            color: #f5f5f7;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
             margin-bottom: 6px;
-            width: 100%;
+            width: fit-content;
         }
 
         .day-events-list {
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 3px;
-            max-height: calc(100% - 24px);
+            gap: 4px;
             overflow-y: auto;
-            scrollbar-width: thin;
         }
 
         .day-event-item {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 3px 6px;
-            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
             font-size: 10px;
-            font-weight: 600;
+            font-weight: 500;
+            color: var(--text);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             cursor: pointer;
-            transition: all 0.2s ease;
         }
 
-        .day-event-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.5);
+        .day-event-item::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            min-width: 5px;
+            border-radius: 1px;
+            background: var(--accent);
         }
 
         .day-event-count {
-            font-size: 9px;
-            color: #667eea;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--accent);
             margin-top: 2px;
-            font-weight: 600;
         }
 
-        .event-detail-modal {
+        .add-event-section { margin-top: 40px; }
+
+        .btn-outline {
+            font-family: var(--font-mono);
+            padding: 12px 24px;
+            background: transparent;
+            border: 1px solid var(--border-strong);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* Modals */
+        .event-detail-modal, .detail-modal, .modal-overlay, .package-modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
+            inset: 0;
+            background: rgba(6, 7, 8, 0.88);
+            backdrop-filter: blur(8px);
             z-index: 3000;
             align-items: center;
             justify-content: center;
             padding: 20px;
         }
 
-        .event-detail-modal.active {
-            display: flex;
-        }
+        .event-detail-modal.active, .detail-modal.active, .modal-overlay.active, .package-modal.active { display: flex; }
 
-        .event-detail-content {
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
-            padding: 50px;
-            border-radius: 25px;
-            border: 2px solid rgba(102, 126, 234, 0.3);
-            max-width: 800px;
+        .event-detail-content, .detail-modal-content, .modal-content {
+            background: var(--surface);
+            padding: 44px;
+            border-radius: 14px;
+            border: 1px solid var(--border-strong);
+            max-width: 720px;
             width: 100%;
-            max-height: 90vh;
+            max-height: 88vh;
             overflow-y: auto;
             position: relative;
         }
 
-        .event-detail-close {
+        .event-detail-close, .detail-modal-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 50%;
+            top: 18px;
+            right: 18px;
+            width: 34px;
+            height: 34px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #f5f5f7;
-            font-size: 24px;
-            transition: all 0.3s ease;
+            color: var(--text-muted);
+            font-size: 18px;
+            transition: all 0.2s ease;
         }
 
-        .event-detail-close:hover {
-            background: rgba(234, 102, 102, 0.2);
-            border-color: #ea6666;
-            transform: rotate(90deg);
+        .event-detail-close:hover, .detail-modal-close:hover {
+            border-color: var(--accent-dim);
+            color: var(--accent);
         }
 
-        .event-detail-header {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
-        }
+        .event-detail-header { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
 
         .event-detail-date-header {
-            color: #667eea;
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 20px;
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 13px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
 
-        .events-list {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
+        .events-list { display: flex; flex-direction: column; gap: 20px; }
 
         .event-card-detail {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            border-radius: 15px;
-            padding: 25px;
-            transition: all 0.3s ease;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 22px;
         }
 
-        .event-card-detail:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: #667eea;
-        }
+        .event-card-detail h3 { font-family: var(--font-display); font-size: 19px; margin-bottom: 10px; font-weight: 600; }
+        .event-card-detail p { font-size: 14px; line-height: 1.75; color: var(--text-muted); margin-bottom: 14px; }
 
-        .event-card-detail h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #f5f5f7;
-        }
+        .event-detail-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
 
-        .event-card-detail p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #86868b;
-            margin-bottom: 15px;
-        }
-
-        .event-detail-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .event-card-actions {
-            display: flex;
-            gap: 10px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(102, 126, 234, 0.1);
-        }
-
-        .timeline-preview {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 0 20px;
-            display: none;
-        }
-
-        .preview-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .preview-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .preview-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .preview-card:hover {
-            border-color: #667eea;
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
-        }
-
-        .preview-card .timeline-icon {
-            font-size: 60px;
-            margin-bottom: 15px;
-        }
-
-        .preview-card h4 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #f5f5f7;
-        }
-
-        .preview-card .preview-date {
-            font-size: 13px;
-            color: #667eea;
-            font-weight: 600;
-        }
-
-        .expand-timeline-btn {
-            padding: 18px 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border: none;
-            border-radius: 50px;
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .expand-timeline-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
-        }
-
-        .expand-icon-btn {
-            transition: transform 0.3s ease;
-        }
-
-        .expand-icon-btn.rotated {
-            transform: rotate(180deg);
-        }
-
-        .timeline-full {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.8s ease, opacity 0.8s ease, margin-top 0.8s ease;
-            opacity: 0;
-        }
-
-        .timeline-full.expanded {
-            max-height: 10000px;
-            opacity: 1;
-            margin-top: 50px;
-        }
-
-        .timeline-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, transparent, #667eea, #764ba2, transparent);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            display: flex;
-            margin-bottom: 80px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease;
-            position: relative;
-        }
-
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .timeline-item:nth-child(odd) {
-            flex-direction: row;
-        }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            width: calc(50% - 40px);
-            padding: 30px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            border-radius: 20px;
-            position: relative;
-            transition: all 0.4s ease;
-        }
-
-        .timeline-content:hover {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-            border-color: #667eea;
-            transform: scale(1.05);
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            content: '';
-            position: absolute;
-            right: -15px;
-            top: 30px;
-            width: 0;
-            height: 0;
-            border-left: 15px solid rgba(102, 126, 234, 0.2);
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::after {
-            content: '';
-            position: absolute;
-            left: -15px;
-            top: 30px;
-            width: 0;
-            height: 0;
-            border-right: 15px solid rgba(102, 126, 234, 0.2);
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            top: 30px;
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border: 4px solid #000;
-            border-radius: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.2); }
-        }
-
-        .timeline-date {
-            display: inline-block;
-            padding: 8px 16px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .timeline-icon {
-            font-size: 40px;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .timeline-content h3 {
-            font-size: 22px;
-            margin-bottom: 12px;
-            color: #f5f5f7;
-        }
-
-        .timeline-content p {
-            color: #86868b;
-            font-size: 15px;
-            line-height: 1.7;
-        }
-
-        .timeline-tag {
-            display: inline-block;
-            padding: 6px 14px;
-            background: rgba(102, 126, 234, 0.2);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 15px;
-            font-size: 12px;
-            color: #667eea;
-            margin-top: 12px;
-            margin-right: 8px;
-        }
-
-        .edit-controls {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(102, 126, 234, 0.2);
-        }
+        .event-card-actions { display: flex; gap: 10px; padding-top: 14px; border-top: 1px solid var(--border); }
 
         .edit-btn, .delete-btn, .save-btn, .cancel-btn {
-            padding: 8px 16px;
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 600;
+            font-family: var(--font-mono);
+            padding: 7px 14px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
+            transition: all 0.2s ease;
+            background: transparent;
+            color: var(--text-muted);
         }
 
-        .edit-btn:hover, .save-btn:hover {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: #667eea;
-        }
+        .edit-btn:hover, .save-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
+        .delete-btn:hover { border-color: rgba(220, 100, 100, 0.5); color: #dc6464; }
 
-        .delete-btn {
-            background: rgba(234, 102, 102, 0.1);
-            border-color: rgba(234, 102, 102, 0.3);
-            color: #ea6666;
-        }
-
-        .delete-btn:hover {
-            background: rgba(234, 102, 102, 0.2);
-            border-color: #ea6666;
-        }
-
-        .cancel-btn {
-            background: rgba(134, 134, 139, 0.1);
-            border-color: rgba(134, 134, 139, 0.3);
-            color: #86868b;
-        }
-
-        .cancel-btn:hover {
-            background: rgba(134, 134, 139, 0.2);
-            border-color: #86868b;
-        }
-
-        .add-event-section {
-            max-width: 1000px;
-            margin: 50px auto 0;
-            text-align: center;
-        }
-
-        .add-event-btn {
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border: none;
-            border-radius: 50px;
-            color: white;
-            font-size: 16px;
+        .modal-title {
+            font-family: var(--font-display);
+            font-size: 24px;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin-bottom: 28px;
         }
 
-        .add-event-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
-        }
-
-        .edit-form {
-            display: none;
-            margin-top: 15px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            border: 1px solid rgba(102, 126, 234, 0.3);
-        }
-
-        .edit-form.active {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
+        .form-group { margin-bottom: 16px; text-align: left; }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            color: #86868b;
-            font-size: 13px;
-            font-weight: 600;
+            margin-bottom: 7px;
+            color: var(--text-faint);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(102, 126, 234, 0.3);
+            padding: 11px 14px;
+            background: var(--bg);
+            border: 1px solid var(--border);
             border-radius: 8px;
-            color: #f5f5f7;
+            color: var(--text);
             font-size: 14px;
-            font-family: inherit;
+            font-family: var(--font-body);
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-dim); }
 
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #667eea;
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .form-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
-
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        /* Portfolio package modal - hosts an iframe to the portfolio package */
-        .package-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(10px);
-            z-index: 3500;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .package-modal.active {
-            display: flex;
-        }
+        .form-buttons { display: flex; gap: 10px; justify-content: flex-end; margin-top: 22px; }
 
         .package-frame {
             width: 100%;
             max-width: 1100px;
             height: 85vh;
             border: none;
-            border-radius: 18px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-            background: #0a0a0f;
-            overflow: hidden;
-            border: 1px solid rgba(102,126,234,0.12);
+            border-radius: 14px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
         }
 
         .package-close {
@@ -808,777 +574,279 @@
             top: 18px;
             right: 18px;
             z-index: 3600;
-            width: 44px;
-            height: 44px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(102,126,234,0.18);
-            border-radius: 50%;
-            color: #f5f5f7;
-            font-size: 22px;
+            width: 40px;
+            height: 40px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
         }
 
-        .modal-content {
-            background: #0a0a0f;
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            max-width: 600px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-title {
+        .detail-modal-header h2 {
+            font-family: var(--font-display);
             font-size: 28px;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .edit-mode .timeline-content h3,
-        .edit-mode .timeline-content p {
-            display: none;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, #667eea22 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, #764ba222 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 2;
-            padding: 0 20px;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(48px, 8vw, 96px);
-            font-weight: 700;
             margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards;
+            font-weight: 600;
         }
 
-        .hero-content .subtitle {
-            font-size: clamp(20px, 3vw, 32px);
-            font-weight: 400;
-            margin-bottom: 15px;
-            opacity: 0;
-            color: #86868b;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease 0.2s forwards;
+        .detail-modal-body p { font-size: 15px; line-height: 1.8; color: var(--text-muted); margin-bottom: 16px; white-space: pre-line; }
+        .detail-modal-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+
+        .tag-pill {
+            display: inline-block;
+            padding: 5px 12px;
+            background: var(--accent-soft);
+            border: 1px solid var(--accent-dim);
+            border-radius: 5px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--accent);
         }
 
-        .hero-content .edu-info {
-            font-size: clamp(14px, 2vw, 18px);
-            color: #667eea;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease 0.4s forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator svg {
-            width: 30px;
-            height: 30px;
-            stroke: #667eea;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* Section Styles */
-        section {
-            min-height: 100vh;
-            padding: 100px 5%;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: clamp(40px, 6vw, 72px);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 80px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease;
-        }
-
-        .section-title.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Projects Section */
-        #projects {
-            background: linear-gradient(180deg, #000 0%, #0a0a0f 50%, #000 100%);
-        }
-
-        .projects-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            gap: 100px;
-        }
+        /* Projects */
+        .projects-grid { display: grid; gap: 24px; }
 
         .project-card {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            grid-template-columns: 260px 1fr;
+            gap: 0;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
             opacity: 0;
-            transform: translateY(80px);
-            transition: all 1s ease;
-            cursor: pointer;
+            transform: translateY(30px);
+            transition: all 0.7s ease;
+            background: var(--surface);
         }
 
-        .project-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .project-card:nth-child(even) {
-            direction: rtl;
-        }
-
-        .project-card:nth-child(even) > * {
-            direction: ltr;
-        }
+        .project-card.visible { opacity: 1; transform: translateY(0); }
+        .project-card:hover { border-color: var(--border-strong); }
 
         .project-visual {
-            width: 100%;
-            aspect-ratio: 16/10;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
+            background: var(--bg-alt);
+            border-right: 1px solid var(--border);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
-            font-weight: 700;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
-            transition: all 0.5s ease;
+            gap: 10px;
+            padding: 30px;
         }
 
-        .project-visual::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
+        .project-visual .code {
+            font-family: var(--font-mono);
+            font-size: 34px;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.02em;
         }
 
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .project-visual .code-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
-        .project-card:hover .project-visual {
-            transform: scale(1.05);
-            box-shadow: 0 30px 80px rgba(102, 126, 234, 0.5);
-        }
+        .project-info { padding: 36px 40px; }
+        .project-info h3 { font-family: var(--font-display); font-size: 24px; font-weight: 600; margin-bottom: 14px; }
+        .project-info p { font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 22px; }
 
-        .project-info h3 {
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .project-info p {
-            font-size: clamp(16px, 2vw, 20px);
-            color: #86868b;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 8px; }
 
         .tech-tag {
-            padding: 10px 20px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 25px;
-            font-size: 14px;
-            color: #667eea;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            padding: 6px 12px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
         }
 
-        .tech-tag:hover {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: #667eea;
-            transform: translateY(-2px);
-        }
-
-        /* Achievements Section */
-        #achievements {
-            background: #000;
-        }
-
-        .achievements-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
+        /* Achievements */
+        .achievements-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
 
         .achievement-card {
-            padding: 50px 40px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            border-radius: 30px;
-            text-align: center;
+            padding: 32px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 2px solid var(--accent);
+            border-radius: 10px;
             opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.8s ease;
-            position: relative;
-            overflow: hidden;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
             cursor: pointer;
         }
 
-        .achievement-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
-            transition: left 0.8s ease;
+        .achievement-card.visible { opacity: 1; transform: translateY(0); }
+        .achievement-card:hover { background: var(--surface-hover); }
+
+        .achievement-card h3 { font-family: var(--font-display); font-size: 20px; font-weight: 600; margin: 14px 0 10px; }
+        .achievement-card p { color: var(--text-muted); font-size: 14px; line-height: 1.7; }
+
+        .view-details {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 500;
         }
 
-        .achievement-card:hover::before {
-            left: 100%;
-        }
-
-        .achievement-card.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .achievement-card:hover {
-            border-color: #667eea;
-            transform: translateY(-10px);
-        }
-
-        .achievement-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-        }
-
-        .achievement-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-
-        .achievement-card p {
-            color: #86868b;
-            font-size: 16px;
-        }
-
-        .achievement-card .view-details {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 20px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 20px;
-            color: #667eea;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .achievement-card:hover .view-details {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: #667eea;
-        }
-
-        /* Certificates Section */
-        #certificates {
-            background: linear-gradient(180deg, #000 0%, #0a0a0f 100%);
-        }
-
-        .certificates-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            gap: 30px;
-        }
+        /* Certificates */
+        .certificates-container { display: flex; flex-direction: column; }
 
         .certificate-card {
             display: flex;
-            gap: 40px;
-            padding: 50px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(102, 126, 234, 0.1);
-            border-radius: 25px;
+            gap: 28px;
+            padding: 32px 8px;
+            border-top: 1px solid var(--border);
             opacity: 0;
-            transform: translateX(-100px);
-            transition: all 1s ease;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
             cursor: pointer;
+            align-items: flex-start;
         }
 
-        .certificate-card.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .certificate-card:nth-child(even) {
-            transform: translateX(100px);
-        }
-
-        .certificate-card:nth-child(even).visible {
-            transform: translateX(0);
-        }
-
-        .certificate-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(102, 126, 234, 0.3);
-        }
+        .certificate-card:last-child { border-bottom: 1px solid var(--border); }
+        .certificate-card.visible { opacity: 1; transform: translateY(0); }
+        .certificate-card:hover .cert-info h3 { color: var(--accent); }
 
         .cert-icon {
-            font-size: 72px;
-            min-width: 100px;
-        }
-
-        .cert-info h3 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        .cert-info p {
-            color: #86868b;
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 10px;
-        }
-
-        .cert-date {
-            color: #667eea;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .cert-info .view-details {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 20px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 20px;
-            color: #667eea;
-            font-size: 14px;
+            font-family: var(--font-mono);
+            font-size: 12px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            color: var(--accent);
+            min-width: 70px;
+            padding: 8px 0;
+            letter-spacing: 0.05em;
         }
 
-        .certificate-card:hover .view-details {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: #667eea;
-        }
+        .cert-info h3 { font-family: var(--font-display); font-size: 20px; font-weight: 600; margin-bottom: 10px; transition: color 0.2s ease; }
+        .cert-info p { color: var(--text-muted); font-size: 14px; line-height: 1.75; margin-bottom: 8px; }
+        .cert-date { font-family: var(--font-mono); color: var(--text-faint); font-size: 12px; }
 
-        /* Skills Section */
-        #skills {
-            background: #000;
-        }
-
-        .skills-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
+        /* Skills */
+        .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
 
         .skill-card {
-            padding: 40px 30px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.03), rgba(118, 75, 162, 0.03));
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            border-radius: 25px;
+            padding: 28px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
             cursor: pointer;
         }
 
-        .skill-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .skill-card.visible { opacity: 1; transform: translateY(0); }
+        .skill-card:hover { border-color: var(--border-strong); }
 
-        .skill-card:hover {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-            border-color: #667eea;
-            transform: translateY(-10px);
-        }
-
-        .skill-card h3 {
-            font-size: 22px;
-            margin-bottom: 25px;
-        }
+        .skill-card h3 { font-family: var(--font-display); font-size: 17px; font-weight: 600; margin-bottom: 18px; }
 
         .skill-bar-wrapper {
             position: relative;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            height: 4px;
+            background: var(--border);
+            border-radius: 4px;
             overflow: hidden;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .skill-bar {
             height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            border-radius: 10px;
+            background: var(--accent);
+            border-radius: 4px;
             width: 0;
-            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .skill-percent {
             display: block;
-            text-align: right;
-            font-size: 14px;
-            color: #667eea;
-            font-weight: 600;
-        }
-
-        .skill-card .view-details {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 6px 16px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 15px;
-            color: #667eea;
+            font-family: var(--font-mono);
             font-size: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            color: var(--text-faint);
         }
 
-        .skill-card:hover .view-details {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: #667eea;
-        }
-
-        /* Detail Modal for Projects, Achievements, etc */
-        .detail-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 3000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .detail-modal.active {
-            display: flex;
-        }
-
-        .detail-modal-content {
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
-            padding: 50px;
-            border-radius: 25px;
-            border: 2px solid rgba(102, 126, 234, 0.3);
-            max-width: 800px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .detail-modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #f5f5f7;
-            font-size: 24px;
-            transition: all 0.3s ease;
-        }
-
-        .detail-modal-close:hover {
-            background: rgba(234, 102, 102, 0.2);
-            border-color: #ea6666;
-            transform: rotate(90deg);
-        }
-
-        .detail-modal-header h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #f5f5f7;
-        }
-
-        .detail-modal-body p {
-            font-size: 18px;
-            line-height: 1.8;
-            color: #86868b;
-            margin-bottom: 20px;
-        }
-
-        .detail-modal-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        /* Contact Section */
-        #contact {
-            background: linear-gradient(180deg, #0a0a0f 0%, #000 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        /* Contact */
+        #contact { border-top: 1px solid var(--border); }
 
         .contact-content {
+            max-width: 720px;
+            margin: 0 auto;
             text-align: center;
-            max-width: 800px;
             opacity: 0;
-            transform: scale(0.9);
-            transition: all 1s ease;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
         }
 
-        .contact-content.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
+        .contact-content.visible { opacity: 1; transform: translateY(0); }
+        .contact-content h2 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px); font-weight: 600; margin: 14px 0 18px; }
+        .contact-content > p { font-size: 16px; color: var(--text-muted); margin-bottom: 48px; }
 
-        .contact-content h2 {
-            font-size: clamp(40px, 6vw, 64px);
-            margin-bottom: 30px;
-        }
-
-        .contact-content p {
-            font-size: clamp(18px, 3vw, 24px);
-            color: #86868b;
-            margin-bottom: 50px;
-        }
-
-        .contact-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+        .contact-list { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; text-align: left; }
 
         .contact-btn {
-            padding: 18px 40px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 2px solid #667eea;
-            border-radius: 50px;
-            color: #f5f5f7;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.4s ease;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 10px;
-            position: relative;
-            overflow: hidden;
+            gap: 16px;
+            padding: 20px 26px;
+            text-decoration: none;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s ease;
         }
 
-        .contact-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: #667eea;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-            z-index: -1;
-        }
+        .contact-list .contact-btn:last-child { border-bottom: none; }
+        .contact-btn:hover { background: var(--surface); }
+        .contact-btn svg { width: 18px; height: 18px; stroke: var(--accent); flex-shrink: 0; }
+        .contact-btn .label { font-weight: 500; font-size: 15px; }
+        .contact-btn .sub { font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); margin-left: auto; }
 
-        .contact-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .contact-btn:hover {
-            border-color: #764ba2;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
-        }
-
-        /* Footer */
         footer {
-            background: #000;
-            padding: 40px 5%;
+            padding: 36px 5%;
             text-align: center;
-            color: #86868b;
-            font-size: 14px;
+            color: var(--text-faint);
+            font-size: 13px;
+            font-family: var(--font-mono);
+            border-top: 1px solid var(--border);
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .project-card {
-                grid-template-columns: 1fr;
-            }
-
-            .project-card:nth-child(even) {
-                direction: ltr;
-            }
-
-            .nav-links {
-                gap: 20px;
-            }
-
-            .timeline-line {
-                left: 30px;
-            }
-
-            .timeline-item {
-                flex-direction: row !important;
-                padding-left: 80px;
-            }
-
-            .timeline-content {
-                width: 100%;
-            }
-
-            .timeline-item:nth-child(odd) .timeline-content::after,
-            .timeline-item:nth-child(even) .timeline-content::after {
-                left: -15px;
-                right: auto;
-                border-right: 15px solid rgba(102, 126, 234, 0.2);
-                border-left: none;
-            }
-
-            .timeline-dot {
-                left: 30px;
-            }
+        @media (max-width: 900px) {
+            .project-card { grid-template-columns: 1fr; }
+            .project-visual { padding: 24px; flex-direction: row; }
+            .nav-links { display: none; }
         }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .certificates-container,
-            .contact-buttons {
-                gap: 15px;
-            }
-
-            .certificate-card {
-                flex-direction: column;
-                padding: 30px;
-            }
-
-            section {
-                padding: 60px 5%;
-            }
-
-            .timeline-item {
-                padding-left: 60px;
-                margin-bottom: 50px;
-            }
-
-            .timeline-content {
-                padding: 20px;
-            }
+        @media (max-width: 600px) {
+            section { padding: 80px 6%; }
+            .certificate-card { flex-direction: column; gap: 10px; }
+            .contact-btn .sub { display: none; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-content">
-            <div class="logo">ASHITH RAI</div>
+            <div class="logo"><span class="dot"></span>ASHITH RAI</div>
             <div class="nav-links">
                 <a href="#home">Home</a>
-                <a href="#timeline">Updates</a>
-                <a href="#projects">Projects</a>
-                <a href="#achievements">Achievements</a>
-                <a href="#certificates">Certificates</a>
-                <a href="#skills">Skills</a>
+                <a href="#timeline">Log</a>
+                <a href="#projects">Work</a>
+                <a href="#achievements">Recognition</a>
+                <a href="#certificates">Credentials</a>
+                <a href="#skills">Stack</a>
                 <a href="#contact">Contact</a>
                 <a href="#" onclick="openPortfolioModal(); return false;">Portfolio</a>
                 <a href="/gamezone/index.html">GameZone</a>
@@ -1586,290 +854,285 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <h1>ASHITH RAI</h1>
-            <p class="subtitle">AI/ML Developer | System Designer</p>
-            <p class="edu-info">Bachelor of Engineering in Artificial Intelligence<br>VCET PUTTUR | 2023 - 2027 | CGPA: 8.1/10</p>
+        <div class="hero-inner">
+            <div class="status-line"><span class="blink"></span>AVAILABLE FOR FREELANCE &amp; COLLABORATION</div>
+            <h1>Building AI systems<br>from <span>model</span> to metal.</h1>
+            <p class="lede">AI/ML engineer and system designer studying at VCET Puttur — I design, train, and ship the infrastructure that machine learning models actually run on.</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <div class="label">Education</div>
+                    <div class="value">B.E. Artificial Intelligence</div>
+                </div>
+                <div class="hero-meta-item">
+                    <div class="label">Institution</div>
+                    <div class="value">VCET Puttur · 2023–2027</div>
+                </div>
+                <div class="hero-meta-item">
+                    <div class="label">CGPA</div>
+                    <div class="value">8.1 / 10</div>
+                </div>
+            </div>
         </div>
         <div class="scroll-indicator">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+            SCROLL
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </div>
     </section>
 
-    <!-- Timeline Section - Daily Updates & Events -->
     <section id="timeline">
-        <div class="timeline-header">
-            <h2 class="section-title" style="margin-bottom: 0;">Recent Updates & Events</h2>
-            <button class="timeline-toggle-btn" onclick="toggleTimelineSection()">
-                <span id="toggleIcon">▼</span>
-                <span id="toggleText">Hide Section</span>
-            </button>
-        </div>
-
-        <div class="timeline-content-wrapper" id="timelineContentWrapper">
-            <!-- Calendar View -->
-            <div class="calendar-view">
-                <div class="calendar-header">
-                    <h3 id="currentMonthYear">November 2025</h3>
-                    <div class="calendar-nav">
-                        <button onclick="changeMonth(-1)">← Previous</button>
-                        <button onclick="changeMonth(0)">Today</button>
-                        <button onclick="changeMonth(1)">Next →</button>
-                    </div>
+        <div class="section-inner">
+            <div class="timeline-header">
+                <div class="section-head visible">
+                    <span class="eyebrow">// Activity Log</span>
+                    <h2>Recent updates</h2>
                 </div>
-                <div class="calendar-grid" id="calendarGrid">
-                    <!-- Calendar will be generated here -->
-                </div>
+                <button class="timeline-toggle-btn" onclick="toggleTimelineSection()">
+                    <span id="toggleIcon">−</span>
+                    <span id="toggleText">Hide section</span>
+                </button>
             </div>
 
-            <div class="add-event-section" style="margin-top: 50px;">
-                <button class="add-event-btn" onclick="openAddEventModal()">➕ Add New Event</button>
+            <div class="timeline-content-wrapper" id="timelineContentWrapper">
+                <div class="calendar-view">
+                    <div class="calendar-header">
+                        <h3 id="currentMonthYear">November 2025</h3>
+                        <div class="calendar-nav">
+                            <button onclick="changeMonth(-1)">Prev</button>
+                            <button onclick="changeMonth(0)">Today</button>
+                            <button onclick="changeMonth(1)">Next</button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                </div>
+
+                <div class="add-event-section">
+                    <button class="btn-outline" onclick="openAddEventModal()">+ Add new entry</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Event Detail Modal -->
     <div class="event-detail-modal" id="eventDetailModal">
         <div class="event-detail-content">
             <div class="event-detail-close" onclick="closeEventDetail()">×</div>
             <div class="event-detail-header">
                 <h3 class="event-detail-date-header" id="detailDateHeader">November 1, 2025</h3>
             </div>
-            <div class="events-list" id="eventsList">
-                <!-- Events for selected day will be inserted here -->
-            </div>
+            <div class="events-list" id="eventsList"></div>
         </div>
     </div>
 
-    <!-- Generic Detail Modal for Projects, Achievements, Certificates, Skills -->
     <div class="detail-modal" id="detailModal">
         <div class="detail-modal-content">
             <div class="detail-modal-close" onclick="closeDetailModal()">×</div>
-            <div class="detail-modal-header">
-                <h2 id="detailModalTitle">Title</h2>
-            </div>
-            <div class="detail-modal-body" id="detailModalBody">
-                <!-- Content will be inserted here -->
-            </div>
+            <div class="detail-modal-header"><h2 id="detailModalTitle">Title</h2></div>
+            <div class="detail-modal-body" id="detailModalBody"></div>
         </div>
     </div>
 
-    <!-- Add/Edit Event Modal -->
-        <!-- Portfolio Package Modal (loads portfolio/index.html inside an iframe) -->
-        <div class="package-modal" id="portfolioModal">
-            <button class="package-close" id="portfolioClose" aria-label="Close portfolio">×</button>
-            <iframe src="/portfolio/index.html" class="package-frame" id="portfolioFrame" title="Portfolio Package"></iframe>
-        </div>
+    <div class="package-modal" id="portfolioModal">
+        <button class="package-close" id="portfolioClose" aria-label="Close portfolio">×</button>
+        <iframe src="/portfolio/index.html" class="package-frame" id="portfolioFrame" title="Portfolio Package"></iframe>
+    </div>
 
     <div class="modal-overlay" id="eventModal">
         <div class="modal-content">
-            <h2 class="modal-title" id="modalTitle">Add New Event</h2>
+            <h2 class="modal-title" id="modalTitle">Add new entry</h2>
             <form id="eventForm">
                 <div class="form-group">
                     <label for="eventDate">Date</label>
                     <input type="date" id="eventDate" required>
                 </div>
                 <div class="form-group">
-                    <label for="eventIcon">Icon (Emoji)</label>
-                    <input type="text" id="eventIcon" placeholder="🚀" maxlength="2" required>
-                </div>
-                <div class="form-group">
                     <label for="eventTitle">Title</label>
-                    <input type="text" id="eventTitle" placeholder="Event Title" required>
+                    <input type="text" id="eventTitle" placeholder="Entry title" required>
                 </div>
                 <div class="form-group">
                     <label for="eventDescription">Description</label>
-                    <textarea id="eventDescription" placeholder="Event description..." required></textarea>
+                    <textarea id="eventDescription" placeholder="What happened..." required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="eventTags">Tags (comma separated)</label>
-                    <input type="text" id="eventTags" placeholder="Tag1, Tag2, Tag3">
+                    <input type="text" id="eventTags" placeholder="Tag one, Tag two">
                 </div>
                 <div class="form-buttons">
                     <button type="button" class="cancel-btn" onclick="closeEventModal()">Cancel</button>
-                    <button type="submit" class="save-btn">Save Event</button>
+                    <button type="submit" class="save-btn">Save entry</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Projects Section -->
     <section id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-visual">🔬</div>
-                <div class="project-info">
-                    <h3>AI Automated Bacteria Classifier</h3>
-                    <p>Developed an advanced AI model to classify bacteria species using state-of-the-art image recognition techniques. Achieved 95% accuracy on the test dataset.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">Keras</span>
-                        <span class="tech-tag">OpenCV</span>
+        <div class="section-inner">
+            <div class="section-head">
+                <span class="eyebrow">// Selected Work</span>
+                <h2>Featured projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" onclick="showProjectDetail('bacteria')">
+                    <div class="project-visual">
+                        <div class="code">ML</div>
+                        <div class="code-label">Vision Model</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>AI Automated Bacteria Classifier</h3>
+                        <p>An image recognition model that classifies bacteria species, reaching 95% accuracy on the held-out test set.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Keras</span>
+                            <span class="tech-tag">OpenCV</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="project-card">
-                <div class="project-visual">☁️</div>
-                <div class="project-info">
-                    <h3>Self-Built Cloud Server</h3>
-                    <p>Designed and implemented a robust cloud server infrastructure with Python and Flask. Features include file storage, user authentication, and RESTful API endpoints.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Flask</span>
-                        <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">AWS</span>
+                <div class="project-card" onclick="showProjectDetail('cloud')">
+                    <div class="project-visual">
+                        <div class="code">SYS</div>
+                        <div class="code-label">Infrastructure</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Self-Built Cloud Server</h3>
+                        <p>A cloud server infrastructure built with Python and Flask, covering file storage, authentication, and a RESTful API.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Achievements Section -->
     <section id="achievements">
-        <h2 class="section-title">Achievements</h2>
-        <div class="achievements-container">
-            <div class="achievement-card" onclick="showAchievementDetail('hackathon')">
-                <div class="achievement-icon">🏆</div>
-                <h3>College Level Hackathon 2025</h3>
-                <p>Secured top 10 position demonstrating exceptional problem-solving skills</p>
-                <span class="view-details">View Details →</span>
+        <div class="section-inner">
+            <div class="section-head">
+                <span class="eyebrow">// Recognition</span>
+                <h2>Achievements</h2>
+            </div>
+            <div class="achievements-container">
+                <div class="achievement-card" onclick="showAchievementDetail('hackathon')">
+                    <span class="eyebrow">Competition</span>
+                    <h3>College Level Hackathon 2025</h3>
+                    <p>Secured a top-10 position, demonstrating strong problem-solving under time pressure.</p>
+                    <span class="view-details">View details →</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Certificates Section -->
     <section id="certificates">
-        <h2 class="section-title">Certificates</h2>
-        <div class="certificates-container">
-            <div class="certificate-card" onclick="showCertificateDetail('aws')">
-                <div class="cert-icon">☁️</div>
-                <div class="cert-info">
-                    <h3>AWS Certified Solutions Architect</h3>
-                    <p>Comprehensive certification demonstrating expertise in designing distributed systems on AWS platform.</p>
-                    <p class="cert-date">Issued: January 2024 | Valid until: January 2027</p>
-                    <span class="view-details">View Details →</span>
-                </div>
+        <div class="section-inner">
+            <div class="section-head">
+                <span class="eyebrow">// Credentials</span>
+                <h2>Certificates</h2>
             </div>
-
-            <div class="certificate-card" onclick="showCertificateDetail('langchain')">
-                <div class="cert-icon">🤖</div>
-                <div class="cert-info">
-                    <h3>Implementing AI Agents with LangChain</h3>
-                    <p>Advanced course on implementing effective AI agent development using the LangChain framework.</p>
-                    <p class="cert-date">Coursera | September 2025</p>
-                    <span class="view-details">View Details →</span>
+            <div class="certificates-container">
+                <div class="certificate-card" onclick="showCertificateDetail('aws')">
+                    <div class="cert-icon">AWS</div>
+                    <div class="cert-info">
+                        <h3>AWS Certified Solutions Architect</h3>
+                        <p>Designing distributed, fault-tolerant systems on the AWS platform.</p>
+                        <p class="cert-date">Issued Jan 2024 · Valid until Jan 2027</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="certificate-card" onclick="showCertificateDetail('ibm')">
-                <div class="cert-icon">🧠</div>
-                <div class="cert-info">
-                    <h3>Machine Learning by IBM</h3>
-                    <p>Comprehensive machine learning course covering supervised and unsupervised learning algorithms.</p>
-                    <p class="cert-date">IBM | May 2025</p>
-                    <span class="view-details">View Details →</span>
+                <div class="certificate-card" onclick="showCertificateDetail('langchain')">
+                    <div class="cert-icon">LNG</div>
+                    <div class="cert-info">
+                        <h3>Implementing AI Agents with LangChain</h3>
+                        <p>Building agentic applications on top of large language models.</p>
+                        <p class="cert-date">Coursera · September 2025</p>
+                    </div>
+                </div>
+                <div class="certificate-card" onclick="showCertificateDetail('ibm')">
+                    <div class="cert-icon">IBM</div>
+                    <div class="cert-info">
+                        <h3>Machine Learning by IBM</h3>
+                        <p>Supervised and unsupervised learning algorithms, from theory to practice.</p>
+                        <p class="cert-date">IBM · May 2025</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-container">
-            <div class="skill-card" onclick="showSkillDetail('java')">
-                <h3>Java</h3>
-                <div class="skill-bar-wrapper">
-                    <div class="skill-bar" data-percent="45"></div>
-                </div>
-                <span class="skill-percent">45%</span>
-                <span class="view-details">View Projects →</span>
+        <div class="section-inner">
+            <div class="section-head">
+                <span class="eyebrow">// Capabilities</span>
+                <h2>Technical stack</h2>
             </div>
-
-            <div class="skill-card" onclick="showSkillDetail('c')">
-                <h3>C</h3>
-                <div class="skill-bar-wrapper">
-                    <div class="skill-bar" data-percent="70"></div>
+            <div class="skills-container">
+                <div class="skill-card" onclick="showSkillDetail('java')">
+                    <h3>Java</h3>
+                    <div class="skill-bar-wrapper"><div class="skill-bar" data-percent="45"></div></div>
+                    <span class="skill-percent">45%</span>
                 </div>
-                <span class="skill-percent">70%</span>
-                <span class="view-details">View Projects →</span>
-            </div>
-
-            <div class="skill-card" onclick="showSkillDetail('python')">
-                <h3>Python</h3>
-                <div class="skill-bar-wrapper">
-                    <div class="skill-bar" data-percent="75"></div>
+                <div class="skill-card" onclick="showSkillDetail('c')">
+                    <h3>C</h3>
+                    <div class="skill-bar-wrapper"><div class="skill-bar" data-percent="70"></div></div>
+                    <span class="skill-percent">70%</span>
                 </div>
-                <span class="skill-percent">75%</span>
-                <span class="view-details">View Projects →</span>
-            </div>
-
-            <div class="skill-card" onclick="showSkillDetail('mongodb')">
-                <h3>MongoDB</h3>
-                <div class="skill-bar-wrapper">
-                    <div class="skill-bar" data-percent="55"></div>
+                <div class="skill-card" onclick="showSkillDetail('python')">
+                    <h3>Python</h3>
+                    <div class="skill-bar-wrapper"><div class="skill-bar" data-percent="75"></div></div>
+                    <span class="skill-percent">75%</span>
                 </div>
-                <span class="skill-percent">55%</span>
-                <span class="view-details">View Projects →</span>
-            </div>
-
-            <div class="skill-card" onclick="showSkillDetail('mysql')">
-                <h3>MySQL</h3>
-                <div class="skill-bar-wrapper">
-                    <div class="skill-bar" data-percent="85"></div>
+                <div class="skill-card" onclick="showSkillDetail('mongodb')">
+                    <h3>MongoDB</h3>
+                    <div class="skill-bar-wrapper"><div class="skill-bar" data-percent="55"></div></div>
+                    <span class="skill-percent">55%</span>
                 </div>
-                <span class="skill-percent">85%</span>
-                <span class="view-details">View Projects →</span>
-            </div>
-
-            <div class="skill-card" onclick="showSkillDetail('git')">
-                <h3>Git & GitHub</h3>
-                <div class="skill-bar-wrapper">
-                    <div class="skill-bar" data-percent="90"></div>
+                <div class="skill-card" onclick="showSkillDetail('mysql')">
+                    <h3>MySQL</h3>
+                    <div class="skill-bar-wrapper"><div class="skill-bar" data-percent="85"></div></div>
+                    <span class="skill-percent">85%</span>
                 </div>
-                <span class="skill-percent">90%</span>
-                <span class="view-details">View Projects →</span>
+                <div class="skill-card" onclick="showSkillDetail('git')">
+                    <h3>Git &amp; GitHub</h3>
+                    <div class="skill-bar-wrapper"><div class="skill-bar" data-percent="90"></div></div>
+                    <span class="skill-percent">90%</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
         <div class="contact-content">
-            <h2>Let's Connect</h2>
-            <p>Feel free to reach out for collaborations or just a friendly chat!</p>
-            <div class="contact-buttons">
+            <span class="eyebrow">// Get In Touch</span>
+            <h2>Let's build something</h2>
+            <p>Open to collaborations, freelance work, and interesting problems.</p>
+            <div class="contact-list">
                 <a href="https://github.com/Ashithrai507" target="_blank" class="contact-btn">
-                    <span>🐙</span>
-                    <span>GitHub</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+                    <span class="label">GitHub</span>
+                    <span class="sub">Ashithrai507</span>
                 </a>
                 <a href="https://www.linkedin.com/in/ashith-rai-382200290" target="_blank" class="contact-btn">
-                    <span>💼</span>
-                    <span>LinkedIn</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4.5a2 2 0 0 1 4 0V17M11 12.5V17"/></svg>
+                    <span class="label">LinkedIn</span>
+                    <span class="sub">ashith-rai</span>
                 </a>
                 <a href="mailto:ashithrai507@gmail.com" class="contact-btn">
-                    <span>📧</span>
-                    <span>Email</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                    <span class="label">Email</span>
+                    <span class="sub">ashithrai507@gmail.com</span>
                 </a>
                 <a href="tel:7892494730" class="contact-btn">
-                    <span>📞</span>
-                    <span>Call</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 3a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.4c1 .4 2 .6 3 .7a2 2 0 0 1 1.6 2z"/></svg>
+                    <span class="label">Call</span>
+                    <span class="sub">7892494730</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Ashith Rai. All rights reserved.</p>
+        <p>© 2025 Ashith Rai — Built with Python-brained curiosity.</p>
     </footer>
 
     <script>
@@ -1879,148 +1142,125 @@
         let currentYear = 2025;
         let selectedDate = null;
 
-        // Events data - now allows multiple events per day
         const eventsData = {};
 
-        // Initialize with sample events
         function initializeEvents() {
-            addEventToData('2025-11-01', { id: 1, icon: '🚀', title: 'Portfolio Website Launch', description: 'Successfully launched my new portfolio website with modern animations and responsive design. Implemented smooth scroll effects and interactive elements.', tags: ['Web Development', 'Design'] });
-            addEventToData('2025-10-28', { id: 2, icon: '📚', title: 'Attended AI/ML Workshop', description: 'Participated in a comprehensive workshop on Advanced Machine Learning techniques. Learned about transformer models and their applications in NLP.', tags: ['Workshop', 'AI/ML'] });
-            addEventToData('2025-10-20', { id: 3, icon: '💻', title: 'Completed Cloud Server Project', description: 'Finished development and deployment of self-built cloud server with Docker containerization. Implemented user authentication and file storage features.', tags: ['Project', 'Cloud'] });
-            addEventToData('2025-10-15', { id: 4, icon: '🎓', title: 'Semester Exams Preparation', description: 'Started intensive preparation for mid-semester examinations. Focused on core AI subjects including Neural Networks and Deep Learning.', tags: ['Academic', 'Study'] });
-            addEventToData('2025-10-10', { id: 5, icon: '🤝', title: 'Tech Community Meet-up', description: 'Attended local tech community meetup focused on emerging AI technologies. Networked with industry professionals and fellow developers.', tags: ['Networking', 'Community'] });
-            addEventToData('2025-09-25', { id: 6, icon: '🏆', title: 'Achievement', description: 'Secured II position in state level Project Expo 2025 held in YIT Moodbiri. Developed a Ai automated Image processing architecture to detect Bacteria colonies.', tags: ['Achievement', 'Competition'] });
+            addEventToData('2025-11-01', { id: 1, title: 'Portfolio Website Launch', description: 'Launched my new portfolio website with modern animations and responsive design, including smooth scroll effects and interactive elements.', tags: ['Web Development', 'Design'] });
+            addEventToData('2025-10-28', { id: 2, title: 'Attended AI/ML Workshop', description: 'Participated in a workshop on advanced machine learning techniques, covering transformer models and their applications in NLP.', tags: ['Workshop', 'AI/ML'] });
+            addEventToData('2025-10-20', { id: 3, title: 'Completed Cloud Server Project', description: 'Finished development and deployment of a self-built cloud server with Docker containerization, user authentication, and file storage.', tags: ['Project', 'Cloud'] });
+            addEventToData('2025-10-15', { id: 4, title: 'Semester Exams Preparation', description: 'Started intensive preparation for mid-semester examinations, focused on Neural Networks and Deep Learning.', tags: ['Academic', 'Study'] });
+            addEventToData('2025-10-10', { id: 5, title: 'Tech Community Meet-up', description: 'Attended a local tech community meetup on emerging AI technologies and connected with industry professionals and fellow developers.', tags: ['Networking', 'Community'] });
+            addEventToData('2025-09-25', { id: 6, title: 'State-Level Project Expo — 2nd Place', description: 'Secured 2nd position in the state level Project Expo 2025 at YIT Moodbiri with an AI-driven image processing system for bacteria colony detection.', tags: ['Achievement', 'Competition'] });
         }
 
         function addEventToData(dateStr, event) {
-            if (!eventsData[dateStr]) {
-                eventsData[dateStr] = [];
-            }
+            if (!eventsData[dateStr]) eventsData[dateStr] = [];
             eventsData[dateStr].push(event);
         }
 
         function removeEventFromData(dateStr, eventId) {
             if (eventsData[dateStr]) {
                 eventsData[dateStr] = eventsData[dateStr].filter(e => e.id !== eventId);
-                if (eventsData[dateStr].length === 0) {
-                    delete eventsData[dateStr];
-                }
+                if (eventsData[dateStr].length === 0) delete eventsData[dateStr];
             }
         }
 
-        // Toggle entire timeline section
         function toggleTimelineSection() {
             const wrapper = document.getElementById('timelineContentWrapper');
             const section = document.getElementById('timeline');
             const icon = document.getElementById('toggleIcon');
             const text = document.getElementById('toggleText');
-            
+
             if (wrapper.classList.contains('collapsed')) {
                 wrapper.classList.remove('collapsed');
                 section.classList.remove('collapsed');
-                icon.textContent = '▼';
-                text.textContent = 'Hide Section';
+                icon.textContent = '−';
+                text.textContent = 'Hide section';
             } else {
                 wrapper.classList.add('collapsed');
                 section.classList.add('collapsed');
-                icon.textContent = '▶';
-                text.textContent = 'Show Section';
+                icon.textContent = '+';
+                text.textContent = 'Show section';
             }
         }
 
-        // Generate calendar
         function generateCalendar() {
             const grid = document.getElementById('calendarGrid');
             const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-            
+
             document.getElementById('currentMonthYear').textContent = `${monthNames[currentMonth]} ${currentYear}`;
-            
             grid.innerHTML = '';
-            
-            // Add day headers
+
             dayNames.forEach(day => {
                 const header = document.createElement('div');
                 header.className = 'calendar-day-header';
                 header.textContent = day;
                 grid.appendChild(header);
             });
-            
-            // Get first day of month and days in month
+
             const firstDay = new Date(currentYear, currentMonth, 1).getDay();
             const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
             const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
-            
+
             const today = new Date();
             const isCurrentMonth = today.getMonth() === currentMonth && today.getFullYear() === currentYear;
-            
-            // Add days from previous month
+
             for (let i = firstDay - 1; i >= 0; i--) {
                 const day = daysInPrevMonth - i;
-                const cell = createDayCell(day, true, currentMonth - 1);
-                grid.appendChild(cell);
+                grid.appendChild(createDayCell(day, true, currentMonth - 1));
             }
-            
-            // Add days of current month
+
             for (let day = 1; day <= daysInMonth; day++) {
                 const isToday = isCurrentMonth && day === today.getDate();
-                const cell = createDayCell(day, false, currentMonth, isToday);
-                grid.appendChild(cell);
+                grid.appendChild(createDayCell(day, false, currentMonth, isToday));
             }
-            
-            // Add days from next month
-            const remainingCells = 42 - (firstDay + daysInMonth); // 6 rows * 7 days
+
+            const remainingCells = 42 - (firstDay + daysInMonth);
             for (let day = 1; day <= remainingCells; day++) {
-                const cell = createDayCell(day, true, currentMonth + 1);
-                grid.appendChild(cell);
+                grid.appendChild(createDayCell(day, true, currentMonth + 1));
             }
         }
 
         function createDayCell(day, isOtherMonth, month, isToday = false) {
             const cell = document.createElement('div');
             cell.className = 'calendar-day';
-            
             if (isOtherMonth) cell.classList.add('other-month');
             if (isToday) cell.classList.add('today');
-            
+
             const dateStr = `${currentYear}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             const events = eventsData[dateStr];
-            
+
             const dayNumberDiv = document.createElement('div');
             dayNumberDiv.className = 'day-number';
             dayNumberDiv.textContent = day;
             cell.appendChild(dayNumberDiv);
-            
+
             if (events && events.length > 0 && !isOtherMonth) {
                 cell.classList.add('has-event');
-                
                 const eventsList = document.createElement('div');
                 eventsList.className = 'day-events-list';
-                
-                // Show max 3 events, rest indicated by count
+
                 const displayCount = Math.min(events.length, 3);
                 for (let i = 0; i < displayCount; i++) {
                     const eventItem = document.createElement('div');
                     eventItem.className = 'day-event-item';
-                    eventItem.textContent = `${events[i].icon} ${events[i].title}`;
-                    eventItem.onclick = (e) => {
-                        e.stopPropagation();
-                        showEventDetail(dateStr);
-                    };
+                    eventItem.textContent = events[i].title;
+                    eventItem.onclick = (e) => { e.stopPropagation(); showEventDetail(dateStr); };
                     eventsList.appendChild(eventItem);
                 }
-                
+
                 if (events.length > 3) {
                     const moreCount = document.createElement('div');
                     moreCount.className = 'day-event-count';
                     moreCount.textContent = `+${events.length - 3} more`;
                     eventsList.appendChild(moreCount);
                 }
-                
+
                 cell.appendChild(eventsList);
                 cell.onclick = () => showEventDetail(dateStr);
             }
-            
+
             return cell;
         }
 
@@ -2031,51 +1271,39 @@
                 currentYear = today.getFullYear();
             } else {
                 currentMonth += offset;
-                if (currentMonth > 11) {
-                    currentMonth = 0;
-                    currentYear++;
-                } else if (currentMonth < 0) {
-                    currentMonth = 11;
-                    currentYear--;
-                }
+                if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+                else if (currentMonth < 0) { currentMonth = 11; currentYear--; }
             }
             generateCalendar();
         }
 
-        // Show event detail modal with all events for a day
         function showEventDetail(dateStr) {
             const events = eventsData[dateStr];
             if (!events || events.length === 0) return;
-            
             selectedDate = dateStr;
-            
             document.getElementById('detailDateHeader').textContent = formatDateLong(dateStr);
-            
+
             const eventsList = document.getElementById('eventsList');
             eventsList.innerHTML = '';
-            
+
             events.forEach(event => {
                 const eventCard = document.createElement('div');
                 eventCard.className = 'event-card-detail';
-                
                 let tagsHTML = '';
-                event.tags.forEach(tag => {
-                    tagsHTML += `<span class="timeline-tag">${tag}</span>`;
-                });
-                
+                event.tags.forEach(tag => { tagsHTML += `<span class="tag-pill">${tag}</span>`; });
+
                 eventCard.innerHTML = `
-                    <h3>${event.icon} ${event.title}</h3>
+                    <h3>${event.title}</h3>
                     <p>${event.description}</p>
                     <div class="event-detail-tags">${tagsHTML}</div>
                     <div class="event-card-actions">
-                        <button class="edit-btn" onclick="editEventFromDetail('${dateStr}', ${event.id})">✏️ Edit</button>
-                        <button class="delete-btn" onclick="deleteEventFromDetail('${dateStr}', ${event.id})">🗑️ Delete</button>
+                        <button class="edit-btn" onclick="editEventFromDetail('${dateStr}', ${event.id})">Edit</button>
+                        <button class="delete-btn" onclick="deleteEventFromDetail('${dateStr}', ${event.id})">Delete</button>
                     </div>
                 `;
-                
                 eventsList.appendChild(eventCard);
             });
-            
+
             document.getElementById('eventDetailModal').classList.add('active');
         }
 
@@ -2087,34 +1315,25 @@
         function editEventFromDetail(dateStr, eventId) {
             const events = eventsData[dateStr];
             const event = events.find(e => e.id === eventId);
-            
             if (event) {
-                currentEditId = {dateStr, eventId};
-                
-                document.getElementById('modalTitle').textContent = 'Edit Event';
+                currentEditId = { dateStr, eventId };
+                document.getElementById('modalTitle').textContent = 'Edit entry';
                 document.getElementById('eventDate').value = dateStr;
-                document.getElementById('eventIcon').value = event.icon;
                 document.getElementById('eventTitle').value = event.title;
                 document.getElementById('eventDescription').value = event.description;
                 document.getElementById('eventTags').value = event.tags.join(', ');
-                
                 closeEventDetail();
                 document.getElementById('eventModal').classList.add('active');
             }
         }
 
         function deleteEventFromDetail(dateStr, eventId) {
-            if (confirm('Are you sure you want to delete this event?')) {
+            if (confirm('Delete this entry?')) {
                 removeEventFromData(dateStr, eventId);
                 generateCalendar();
-                
-                // Refresh modal if there are still events
                 const events = eventsData[dateStr];
-                if (events && events.length > 0) {
-                    showEventDetail(dateStr);
-                } else {
-                    closeEventDetail();
-                }
+                if (events && events.length > 0) showEventDetail(dateStr);
+                else closeEventDetail();
             }
         }
 
@@ -2124,311 +1343,204 @@
             return date.toLocaleDateString('en-US', options);
         }
 
-        // Initialize calendar on load
         document.addEventListener('DOMContentLoaded', () => {
             initializeEvents();
             generateCalendar();
         });
 
-        // Open add event modal
         function openAddEventModal() {
             currentEditId = null;
-            document.getElementById('modalTitle').textContent = 'Add New Event';
+            document.getElementById('modalTitle').textContent = 'Add new entry';
             document.getElementById('eventForm').reset();
             document.getElementById('eventModal').classList.add('active');
         }
 
-        // Close modal
         function closeEventModal() {
             document.getElementById('eventModal').classList.remove('active');
             document.getElementById('eventForm').reset();
             currentEditId = null;
         }
 
-        // Handle form submission
-        document.getElementById('eventForm').addEventListener('submit', function(e) {
+        document.getElementById('eventForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            
             const date = document.getElementById('eventDate').value;
-            const icon = document.getElementById('eventIcon').value;
             const title = document.getElementById('eventTitle').value;
             const description = document.getElementById('eventDescription').value;
             const tagsInput = document.getElementById('eventTags').value;
-            const tags = tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag);
-            
+            const tags = tagsInput.split(',').map(t => t.trim()).filter(t => t);
+
             const eventData = {
                 id: currentEditId ? currentEditId.eventId : eventIdCounter++,
-                icon: icon,
-                title: title,
-                description: description,
-                tags: tags
+                title, description, tags
             };
 
             if (currentEditId) {
-                // Update existing event
                 removeEventFromData(currentEditId.dateStr, currentEditId.eventId);
                 addEventToData(date, eventData);
             } else {
-                // Add new event
                 addEventToData(date, eventData);
             }
-            
+
             closeEventModal();
-            generateCalendar();
-            
-            // Navigate to the month of the event
             const eventDate = new Date(date);
             currentMonth = eventDate.getMonth();
             currentYear = eventDate.getFullYear();
             generateCalendar();
         });
 
-        // Close modal when clicking outside
-        document.getElementById('eventModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeEventModal();
-            }
-        });
+        document.getElementById('eventModal').addEventListener('click', function (e) { if (e.target === this) closeEventModal(); });
+        document.getElementById('eventDetailModal').addEventListener('click', function (e) { if (e.target === this) closeEventDetail(); });
 
-        document.getElementById('eventDetailModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeEventDetail();
-            }
-        });
-
-        // Detail modal functions for Projects, Achievements, Certificates, Skills
         function showProjectDetail(projectId) {
             const projects = {
-                'bacteria': {
+                bacteria: {
                     title: 'AI Automated Bacteria Classifier',
-                    description: 'Developed an advanced AI model to classify bacteria species using state-of-the-art image recognition techniques. The model achieved 95% accuracy on the test dataset through deep learning and convolutional neural networks.\n\nKey Features:\n- Real-time bacteria classification\n- Multi-class detection with 20+ species\n- Web-based interface for easy access\n- Integration with laboratory equipment\n\nThis project demonstrates the practical application of AI in healthcare and microbiology, potentially reducing diagnosis time from hours to seconds.',
+                    description: 'An image recognition model that classifies bacteria species, reaching 95% accuracy on the held-out test set through a convolutional neural network.\n\nKey features:\n– Real-time bacteria classification\n– Multi-class detection across 20+ species\n– Web-based interface for lab use\n– Integration with laboratory equipment\n\nThis project applies AI to microbiology, cutting diagnosis time from hours to seconds.',
                     tags: ['Python', 'TensorFlow', 'Keras', 'OpenCV', 'Deep Learning', 'Healthcare']
                 },
-                'cloud': {
+                cloud: {
                     title: 'Self-Built Cloud Server',
-                    description: 'Designed and implemented a robust cloud server infrastructure using Python and Flask. The server features comprehensive file storage capabilities, user authentication, and RESTful API endpoints for seamless integration.\n\nKey Features:\n- Scalable file storage system\n- JWT-based authentication\n- RESTful API with full CRUD operations\n- Docker containerization for easy deployment\n- AWS hosting with load balancing\n\nThe project showcases full-stack development skills and cloud infrastructure management.',
+                    description: 'A cloud server infrastructure built with Python and Flask, featuring file storage, authentication, and RESTful endpoints.\n\nKey features:\n– Scalable file storage system\n– JWT-based authentication\n– Full CRUD REST API\n– Docker containerization for deployment\n– AWS hosting with load balancing\n\nThis project reflects full-stack development and cloud infrastructure management.',
                     tags: ['Python', 'Flask', 'Docker', 'AWS', 'REST API', 'Cloud Computing']
                 }
             };
-            
             const project = projects[projectId];
-            if (project) {
-                showDetailModal(project.title, project.description, project.tags);
-            }
+            if (project) showDetailModal(project.title, project.description, project.tags);
         }
 
         function showAchievementDetail(achievementId) {
             const achievements = {
-                'hackathon': {
-                    title: 'Secured II in State Level project Expo 2025',
-                    description: 'Achieved second place in the prestigious State Level Project Expo 2025 held in YIT Moodbiri with an innovative AI-driven solution for real-time data processing. The project involved designing a scalable architecture using Python with ML, demonstrating exceptional problem-solving skills and teamwork.\n\nHighlights:\n- Developed a real-time object detection system\n- Utilizing the python as the backend\n- Implemented efficient algorithms for Image processing\n- Collaborated effectively within a team of 4 members\n\nThis achievement reflects strong technical expertise and the ability to deliver impactful solutions under competitive conditions.',
-                    tags: ['Achievement', 'Competition', 'Python', 'Pytorch', 'Image Processing', 'Teamwork']
+                hackathon: {
+                    title: 'Secured 2nd — State Level Project Expo 2025',
+                    description: 'Achieved second place at the State Level Project Expo 2025, held at YIT Moodbiri, with an AI-driven solution for real-time data processing.\n\nHighlights:\n– Built a real-time object detection system\n– Python backend for the full pipeline\n– Efficient image-processing algorithms\n– Delivered as part of a 4-member team\n\nThis reflects strong technical execution under competitive conditions.',
+                    tags: ['Achievement', 'Competition', 'Python', 'PyTorch', 'Image Processing', 'Teamwork']
                 }
             };
-            
             const achievement = achievements[achievementId];
-            if (achievement) {
-                showDetailModal(achievement.title, achievement.description, achievement.tags);
-            }
+            if (achievement) showDetailModal(achievement.title, achievement.description, achievement.tags);
         }
 
         function showCertificateDetail(certId) {
             const certificates = {
-                'aws': {
+                aws: {
                     title: 'AWS Certified Solutions Architect',
-                    description: 'Comprehensive professional certification demonstrating expertise in designing distributed systems on the Amazon Web Services platform.\n\nSkills Validated:\n- Designing resilient architectures\n- High-performing systems\n- Secure applications and architectures\n- Cost-optimized architectures\n- Operations excellence\n\nIssued: January 2024\nValid until: January 2027\n\nThis certification validates the ability to design and deploy scalable, highly available, and fault-tolerant systems on AWS.',
+                    description: 'Professional certification covering the design of distributed systems on Amazon Web Services.\n\nSkills validated:\n– Resilient architectures\n– High-performing systems\n– Secure applications and architectures\n– Cost-optimized architectures\n– Operational excellence\n\nIssued January 2024, valid until January 2027.',
                     tags: ['AWS', 'Cloud Architecture', 'Solutions Design', 'Certification']
                 },
-                'langchain': {
-                    title: 'Implementing AI Agents with LangChain - Coursera',
-                    description: 'Advanced specialization course focused on implementing effective AI agents using the LangChain framework for building applications with large language models.\n\nCourse Topics:\n- LangChain fundamentals\n- Building AI agents\n- Prompt engineering\n- Memory systems\n- Tool integration\n- Production deployment\n\nCompleted: September 2025\n\nThis course provided hands-on experience in developing intelligent AI agents capable of complex reasoning and task execution.',
+                langchain: {
+                    title: 'Implementing AI Agents with LangChain',
+                    description: 'A course on building agentic applications with large language models using the LangChain framework.\n\nTopics covered:\n– LangChain fundamentals\n– Building AI agents\n– Prompt engineering\n– Memory systems\n– Tool integration\n– Production deployment\n\nCompleted September 2025.',
                     tags: ['AI', 'LangChain', 'LLM', 'Python', 'Coursera']
                 },
-                'ibm': {
+                ibm: {
                     title: 'Machine Learning by IBM',
-                    description: 'Comprehensive machine learning course covering fundamental and advanced concepts in both supervised and unsupervised learning algorithms.\n\nCourse Coverage:\n- Supervised Learning (Regression, Classification)\n- Unsupervised Learning (Clustering, Dimensionality Reduction)\n- Model evaluation and validation\n- Feature engineering\n- Practical implementations\n\nCompleted: May 2025\n\nThis course provided a solid foundation in machine learning theory and practical application using Python and scikit-learn.',
+                    description: 'A course covering supervised and unsupervised learning, from theory to implementation.\n\nCourse coverage:\n– Supervised learning (regression, classification)\n– Unsupervised learning (clustering, dimensionality reduction)\n– Model evaluation and validation\n– Feature engineering\n– Practical implementation\n\nCompleted May 2025.',
                     tags: ['Machine Learning', 'IBM', 'Python', 'Data Science', 'AI']
                 }
             };
-            
             const cert = certificates[certId];
-            if (cert) {
-                showDetailModal(cert.title, cert.description, cert.tags);
-            }
+            if (cert) showDetailModal(cert.title, cert.description, cert.tags);
         }
 
         function showSkillDetail(skillId) {
             const skills = {
-                'java': {
-                    title: 'Java Programming',
-                    description: 'Proficiency Level: 45%\n\nExperience with Java programming language including:\n- Object-Oriented Programming principles\n- Data structures and algorithms\n- Exception handling\n- File I/O operations\n- Basic GUI development\n\nProjects completed:\n- Console-based applications\n- Academic assignments\n- Small utility programs',
+                java: {
+                    title: 'Java',
+                    description: 'Proficiency: 45%\n\nExperience with:\n– Object-oriented programming\n– Data structures and algorithms\n– Exception handling\n– File I/O\n– Basic GUI development\n\nUsed for console applications and academic assignments.',
                     tags: ['Java', 'OOP', 'Programming']
                 },
-                'c': {
-                    title: 'C Programming',
-                    description: 'Proficiency Level: 70%\n\nStrong foundation in C programming including:\n- Memory management and pointers\n- Data structures implementation\n- System-level programming\n- Algorithm optimization\n- File handling\n\nProjects completed:\n- Custom data structure implementations\n- System utilities\n- Performance-critical applications',
+                c: {
+                    title: 'C',
+                    description: 'Proficiency: 70%\n\nExperience with:\n– Memory management and pointers\n– Data structure implementation\n– System-level programming\n– Algorithm optimization\n– File handling\n\nUsed for custom data structures and system utilities.',
                     tags: ['C', 'Systems Programming', 'Algorithms']
                 },
-                'python': {
-                    title: 'Python Programming',
-                    description: 'Proficiency Level: 75%\n\nAdvanced Python programming skills including:\n- Object-Oriented Programming\n- Web development (Flask, Django)\n- Data analysis (Pandas, NumPy)\n- Machine Learning (TensorFlow, scikit-learn)\n- API development\n\nProjects completed:\n- AI bacteria classifier\n- Cloud server application\n- Multiple automation scripts\n- Data analysis projects',
+                python: {
+                    title: 'Python',
+                    description: 'Proficiency: 75%\n\nExperience with:\n– Object-oriented programming\n– Web development (Flask, Django)\n– Data analysis (pandas, NumPy)\n– Machine learning (TensorFlow, scikit-learn)\n– API development\n\nUsed across the bacteria classifier, cloud server, and multiple automation scripts.',
                     tags: ['Python', 'AI/ML', 'Web Development', 'Data Science']
                 },
-                'mongodb': {
+                mongodb: {
                     title: 'MongoDB',
-                    description: 'Proficiency Level: 55%\n\nNoSQL database experience with MongoDB:\n- Document-based data modeling\n- CRUD operations\n- Aggregation pipelines\n- Indexing strategies\n- Integration with Python applications\n\nUsed in projects:\n- User data storage\n- Application backend\n- Real-time data processing',
+                    description: 'Proficiency: 55%\n\nExperience with:\n– Document-based data modeling\n– CRUD operations\n– Aggregation pipelines\n– Indexing strategies\n– Integration with Python applications',
                     tags: ['MongoDB', 'NoSQL', 'Database', 'Backend']
                 },
-                'mysql': {
+                mysql: {
                     title: 'MySQL',
-                    description: 'Proficiency Level: 85%\n\nStrong relational database skills with MySQL:\n- Database design and normalization\n- Complex SQL queries and joins\n- Stored procedures and triggers\n- Performance optimization\n- Database security\n\nProjects completed:\n- Multiple full-stack applications\n- Data management systems\n- Report generation systems',
+                    description: 'Proficiency: 85%\n\nExperience with:\n– Database design and normalization\n– Complex queries and joins\n– Stored procedures and triggers\n– Performance optimization\n– Database security',
                     tags: ['MySQL', 'SQL', 'Database', 'Backend']
                 },
-                'git': {
+                git: {
                     title: 'Git & GitHub',
-                    description: 'Proficiency Level: 90%\n\nExpert-level version control skills:\n- Git workflow and branching strategies\n- Collaboration and pull requests\n- Code review processes\n- Repository management\n- CI/CD integration\n\nDaily usage:\n- All projects versioned with Git\n- Active GitHub profile\n- Collaborative development\n- Open-source contributions',
+                    description: 'Proficiency: 90%\n\nExperience with:\n– Branching strategies\n– Pull requests and code review\n– Repository management\n– CI/CD integration\n\nUsed daily across all projects.',
                     tags: ['Git', 'GitHub', 'Version Control', 'DevOps']
                 }
             };
-            
             const skill = skills[skillId];
-            if (skill) {
-                showDetailModal(skill.title, skill.description, skill.tags);
-            }
+            if (skill) showDetailModal(skill.title, skill.description, skill.tags);
         }
 
         function showDetailModal(title, description, tags) {
             document.getElementById('detailModalTitle').textContent = title;
-            
             const body = document.getElementById('detailModalBody');
-            
-            // Split description by line breaks and create paragraphs
             const paragraphs = description.split('\n').filter(p => p.trim());
             let bodyHTML = '';
-            paragraphs.forEach(para => {
-                bodyHTML += `<p>${para}</p>`;
-            });
-            
+            paragraphs.forEach(para => { bodyHTML += `<p>${para}</p>`; });
+
             let tagsHTML = '<div class="detail-modal-tags">';
-            tags.forEach(tag => {
-                tagsHTML += `<span class="timeline-tag">${tag}</span>`;
-            });
+            tags.forEach(tag => { tagsHTML += `<span class="tag-pill">${tag}</span>`; });
             tagsHTML += '</div>';
-            
+
             body.innerHTML = bodyHTML + tagsHTML;
-            
             document.getElementById('detailModal').classList.add('active');
         }
 
-        function closeDetailModal() {
-            document.getElementById('detailModal').classList.remove('active');
-        }
+        function closeDetailModal() { document.getElementById('detailModal').classList.remove('active'); }
 
-        document.getElementById('detailModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeDetailModal();
-            }
-        });
+        document.getElementById('detailModal').addEventListener('click', function (e) { if (e.target === this) closeDetailModal(); });
 
-        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            if (window.scrollY > 40) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
         });
 
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
+        const observerOptions = { threshold: 0.2, rootMargin: '0px 0px -80px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    
-                    // Animate skill bars
                     if (entry.target.classList.contains('skill-card')) {
                         const skillBar = entry.target.querySelector('.skill-bar');
                         const percent = skillBar.getAttribute('data-percent');
-                        setTimeout(() => {
-                            skillBar.style.width = percent + '%';
-                        }, 200);
+                        setTimeout(() => { skillBar.style.width = percent + '%'; }, 150);
                     }
                 }
             });
         }, observerOptions);
 
-        // Observe elements
-        document.querySelectorAll('.section-title, .project-card, .achievement-card, .certificate-card, .skill-card, .contact-content, .timeline-item, .preview-card').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.section-head, .project-card, .achievement-card, .certificate-card, .skill-card, .contact-content').forEach(el => observer.observe(el));
 
-        // Toggle timeline expand/collapse
-        function toggleTimeline() {
-            const timelineFull = document.getElementById('timelineFull');
-            const expandBtn = document.getElementById('expandBtnText');
-            const expandIcon = document.getElementById('expandIcon');
-            
-            if (timelineFull.classList.contains('expanded')) {
-                timelineFull.classList.remove('expanded');
-                expandBtn.textContent = 'View All Updates';
-                expandIcon.textContent = '▼';
-                expandIcon.classList.remove('rotated');
-                
-                // Smooth scroll to timeline section
-                document.getElementById('timeline').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-                timelineFull.classList.add('expanded');
-                expandBtn.textContent = 'Show Less';
-                expandIcon.textContent = '▲';
-                expandIcon.classList.add('rotated');
-                
-                // Trigger animations for timeline items
-                setTimeout(() => {
-                    document.querySelectorAll('.timeline-item').forEach(item => {
-                        observer.observe(item);
-                    });
-                }, 100);
-            }
-        }
-
-        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Portfolio package modal controls
         function openPortfolioModal() {
             const modal = document.getElementById('portfolioModal');
             const frame = document.getElementById('portfolioFrame');
             modal.classList.add('active');
-            // ensure iframe reloads to show latest content
             frame.src = frame.getAttribute('src');
         }
 
         function closePortfolioModal() {
-            const modal = document.getElementById('portfolioModal');
-            const frame = document.getElementById('portfolioFrame');
-            modal.classList.remove('active');
-            // Optionally blank the iframe to stop any running audio/loops
-            // frame.src = 'about:blank';
+            document.getElementById('portfolioModal').classList.remove('active');
         }
 
         document.getElementById('portfolioClose').addEventListener('click', closePortfolioModal);
-        document.getElementById('portfolioModal').addEventListener('click', function(e) {
-            if (e.target === this) closePortfolioModal();
-        });
+        document.getElementById('portfolioModal').addEventListener('click', function (e) { if (e.target === this) closePortfolioModal(); });
     </script>
 </body>
 </html>
