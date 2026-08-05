@@ -839,7 +839,7 @@
 <body>
     <nav id="navbar">
         <div class="nav-content">
-            <div class="logo"><span class="dot"></span>ASHITH RAI</div>
+            <div class="logo">ASHITH RAI</div>
             <div class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#timeline">Log</a>
@@ -858,19 +858,19 @@
         <div class="hero-inner">
             <div class="status-line"><span class="blink"></span>AVAILABLE FOR FREELANCE &amp; COLLABORATION</div>
             <h1>Building AI systems<br>from <span>model</span> to metal.</h1>
-            <p class="lede">AI/ML engineer and system designer studying at VCET Puttur — I design, train, and ship the infrastructure that machine learning models actually run on.</p>
+            <p class="lede">AI/ML engineering student building full-stack applications and distributed architectures — designing scalable systems, optimizing data pipelines, and shipping real-time analytics solutions.</p>
             <div class="hero-meta">
                 <div class="hero-meta-item">
                     <div class="label">Education</div>
-                    <div class="value">B.E. Artificial Intelligence</div>
+                    <div class="value">B.E. AI & Machine Learning</div>
                 </div>
                 <div class="hero-meta-item">
                     <div class="label">Institution</div>
-                    <div class="value">VCET Puttur · 2023–2027</div>
+                    <div class="value">VCET Puttur (VTU) · 2023–2027</div>
                 </div>
                 <div class="hero-meta-item">
                     <div class="label">CGPA</div>
-                    <div class="value">8.1 / 10</div>
+                    <div class="value">8.0 / 10</div>
                 </div>
             </div>
         </div>
@@ -971,36 +971,70 @@
                 <h2>Featured projects</h2>
             </div>
             <div class="projects-grid">
-                <div class="project-card" onclick="showProjectDetail('bacteria')">
+                <div class="project-card" onclick="showProjectDetail('vaultnas')">
                     <div class="project-visual">
-                        <div class="code">ML</div>
-                        <div class="code-label">Vision Model</div>
+                        <div class="code">NAS</div>
+                        <div class="code-label">Mar 2026</div>
                     </div>
                     <div class="project-info">
-                        <h3>AI Automated Bacteria Classifier</h3>
-                        <p>An image recognition model that classifies bacteria species, reaching 95% accuracy on the held-out test set.</p>
+                        <h3>VaultNAS — Distributed Storage & Local LLM Hosting</h3>
+                        <p>A self-hosted network-attached storage platform with a React frontend and FastAPI backend, built to securely store data, benchmark performance, and host open-source LLMs.</p>
                         <div class="tech-stack">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">Keras</span>
-                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">REST API</span>
+                            <span class="tech-tag">JWT Auth</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card" onclick="showProjectDetail('cloud')">
+                <div class="project-card" onclick="showProjectDetail('rtose')">
                     <div class="project-visual">
-                        <div class="code">SYS</div>
-                        <div class="code-label">Infrastructure</div>
+                        <div class="code">CV</div>
+                        <div class="code-label">2025–2026</div>
                     </div>
                     <div class="project-info">
-                        <h3>Self-Built Cloud Server</h3>
-                        <p>A cloud server infrastructure built with Python and Flask, covering file storage, authentication, and a RESTful API.</p>
+                        <h3>RtOSE — Real-Time Object Tracking System</h3>
+                        <p>An automated object analytics system that tracks fast-moving trajectories, maps 2D motion paths, and extracts performance metrics from live video streams.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">Docker</span>
-                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">YOLOv8</span>
+                            <span class="tech-tag">Multithreading</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="showProjectDetail('peerlink')">
+                    <div class="project-visual">
+                        <div class="code">P2P</div>
+                        <div class="code-label">May 2026</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>PeerLink — Decentralized Communication Platform</h3>
+                        <p>An open-source messaging application with no central server, using secure TCP sockets and SSH-based connectivity between trusted users.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Socket API</span>
+                            <span class="tech-tag">JCA</span>
+                            <span class="tech-tag">JavaFX</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="showProjectDetail('bacteria')">
+                    <div class="project-visual">
+                        <div class="code">ML</div>
+                        <div class="code-label">2025–2026</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>AI-Based Bacteria Classification & Colony Analysis</h3>
+                        <p>A custom feature-extraction and image-processing pipeline built from scratch to automate detection and biological classification of bacterial colonies, led with a 4-member team.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Image Processing</span>
+                            <span class="tech-tag">Full-Stack</span>
                         </div>
                     </div>
                 </div>
@@ -1015,10 +1049,10 @@
                 <h2>Achievements</h2>
             </div>
             <div class="achievements-container">
-                <div class="achievement-card" onclick="showAchievementDetail('hackathon')">
-                    <span class="eyebrow">Competition</span>
-                    <h3>College Level Hackathon 2025</h3>
-                    <p>Secured a top-10 position, demonstrating strong problem-solving under time pressure.</p>
+                <div class="achievement-card" onclick="showAchievementDetail('expo')">
+                    <span class="eyebrow">Nov 2025</span>
+                    <h3>2nd Place — Project Expo, ISTE YIT Mudbidri</h3>
+                    <p>Recognized out of numerous teams for scalable architectural design and systems engineering.</p>
                     <span class="view-details">View details →</span>
                 </div>
             </div>
@@ -1032,28 +1066,12 @@
                 <h2>Certificates</h2>
             </div>
             <div class="certificates-container">
-                <div class="certificate-card" onclick="showCertificateDetail('aws')">
-                    <div class="cert-icon">AWS</div>
+                <div class="certificate-card" onclick="showCertificateDetail('mlops')">
+                    <div class="cert-icon">MLOPS</div>
                     <div class="cert-info">
-                        <h3>AWS Certified Solutions Architect</h3>
-                        <p>Designing distributed, fault-tolerant systems on the AWS platform.</p>
-                        <p class="cert-date">Issued Jan 2024 · Valid until Jan 2027</p>
-                    </div>
-                </div>
-                <div class="certificate-card" onclick="showCertificateDetail('langchain')">
-                    <div class="cert-icon">LNG</div>
-                    <div class="cert-info">
-                        <h3>Implementing AI Agents with LangChain</h3>
-                        <p>Building agentic applications on top of large language models.</p>
-                        <p class="cert-date">Coursera · September 2025</p>
-                    </div>
-                </div>
-                <div class="certificate-card" onclick="showCertificateDetail('ibm')">
-                    <div class="cert-icon">IBM</div>
-                    <div class="cert-info">
-                        <h3>Machine Learning by IBM</h3>
-                        <p>Supervised and unsupervised learning algorithms, from theory to practice.</p>
-                        <p class="cert-date">IBM · May 2025</p>
+                        <h3>Machine Learning Operations (MLOps)</h3>
+                        <p>End-to-end deployment pipelines — from model packaging to production monitoring.</p>
+                        <p class="cert-date">Udemy · November 2025</p>
                     </div>
                 </div>
             </div>
@@ -1097,6 +1115,21 @@
                     <div class="skill-bar-wrapper"><div class="skill-bar" data-percent="90"></div></div>
                     <span class="skill-percent">90%</span>
                 </div>
+                <div class="skill-card" onclick="showSkillDetail('react')">
+                    <h3>React</h3>
+                    <div class="skill-bar-wrapper"><div class="skill-bar" data-percent="70"></div></div>
+                    <span class="skill-percent">70%</span>
+                </div>
+                <div class="skill-card" onclick="showSkillDetail('fastapi')">
+                    <h3>FastAPI / Flask</h3>
+                    <div class="skill-bar-wrapper"><div class="skill-bar" data-percent="75"></div></div>
+                    <span class="skill-percent">75%</span>
+                </div>
+                <div class="skill-card" onclick="showSkillDetail('pytorch')">
+                    <h3>PyTorch / TensorFlow</h3>
+                    <div class="skill-bar-wrapper"><div class="skill-bar" data-percent="65"></div></div>
+                    <span class="skill-percent">65%</span>
+                </div>
             </div>
         </div>
     </section>
@@ -1122,10 +1155,10 @@
                     <span class="label">Email</span>
                     <span class="sub">ashithrai507@gmail.com</span>
                 </a>
-                <a href="tel:7892494730" class="contact-btn">
+                <a href="tel:+917624893630" class="contact-btn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 3a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.4c1 .4 2 .6 3 .7a2 2 0 0 1 1.6 2z"/></svg>
                     <span class="label">Call</span>
-                    <span class="sub">7892494730</span>
+                    <span class="sub">+91 7624893630</span>
                 </a>
             </div>
         </div>
@@ -1150,7 +1183,7 @@
             addEventToData('2025-10-20', { id: 3, title: 'Completed Cloud Server Project', description: 'Finished development and deployment of a self-built cloud server with Docker containerization, user authentication, and file storage.', tags: ['Project', 'Cloud'] });
             addEventToData('2025-10-15', { id: 4, title: 'Semester Exams Preparation', description: 'Started intensive preparation for mid-semester examinations, focused on Neural Networks and Deep Learning.', tags: ['Academic', 'Study'] });
             addEventToData('2025-10-10', { id: 5, title: 'Tech Community Meet-up', description: 'Attended a local tech community meetup on emerging AI technologies and connected with industry professionals and fellow developers.', tags: ['Networking', 'Community'] });
-            addEventToData('2025-09-25', { id: 6, title: 'State-Level Project Expo — 2nd Place', description: 'Secured 2nd position in the state level Project Expo 2025 at YIT Moodbiri with an AI-driven image processing system for bacteria colony detection.', tags: ['Achievement', 'Competition'] });
+            addEventToData('2025-11-20', { id: 6, title: 'Project Expo — 2nd Place, ISTE YIT Mudbidri', description: 'Secured 2nd position at the Project Expo, recognized out of numerous teams for scalable architectural design and systems engineering.', tags: ['Achievement', 'Competition'] });
         }
 
         function addEventToData(dateStr, event) {
@@ -1393,15 +1426,25 @@
 
         function showProjectDetail(projectId) {
             const projects = {
-                bacteria: {
-                    title: 'AI Automated Bacteria Classifier',
-                    description: 'An image recognition model that classifies bacteria species, reaching 95% accuracy on the held-out test set through a convolutional neural network.\n\nKey features:\n– Real-time bacteria classification\n– Multi-class detection across 20+ species\n– Web-based interface for lab use\n– Integration with laboratory equipment\n\nThis project applies AI to microbiology, cutting diagnosis time from hours to seconds.',
-                    tags: ['Python', 'TensorFlow', 'Keras', 'OpenCV', 'Deep Learning', 'Healthcare']
+                vaultnas: {
+                    title: 'VaultNAS — Distributed Storage & Local LLM Hosting',
+                    description: 'A self-hosted network-attached storage platform with a React frontend and FastAPI backend, built to securely store data, benchmark performance, and host open-source LLMs.\n\nKey features:\n– Modular REST APIs and private cloud networking protocols\n– Optimized system throughput and low-latency data access\n– JWT-based authentication\n– Robust file management across nested directories\n\nMarch 2026.',
+                    tags: ['NAS Cloud', 'Python', 'JavaScript', 'FastAPI', 'REST API', 'JWT Authentication']
                 },
-                cloud: {
-                    title: 'Self-Built Cloud Server',
-                    description: 'A cloud server infrastructure built with Python and Flask, featuring file storage, authentication, and RESTful endpoints.\n\nKey features:\n– Scalable file storage system\n– JWT-based authentication\n– Full CRUD REST API\n– Docker containerization for deployment\n– AWS hosting with load balancing\n\nThis project reflects full-stack development and cloud infrastructure management.',
-                    tags: ['Python', 'Flask', 'Docker', 'AWS', 'REST API', 'Cloud Computing']
+                rtose: {
+                    title: 'RtOSE — Real-Time Data Analytics & Object Tracking System',
+                    description: 'An automated object analytics system using Python, OpenCV, and YOLOv8 to track fast-moving trajectories, map 2D motion paths, and extract performance metrics from live video streams.\n\nKey features:\n– Multithreaded (QThread) architecture for synchronous real-time playback\n– Live video processing and data visualization pipelines with no bottlenecks\n\n2025–2026.',
+                    tags: ['Computer Vision', 'NumPy', 'OpenCV', 'Python', 'YOLOv8', 'Multithreading']
+                },
+                peerlink: {
+                    title: 'PeerLink — A Decentralized Communication Platform',
+                    description: 'An open-source messaging application designed around complete decentralization, with no central server dependencies.\n\nKey features:\n– Secure, isolated communication channels between trusted users\n– TCP sockets, multithreading, and SSH-based connectivity\n– Secure authentication mechanisms\n\nMay 2026.',
+                    tags: ['Decentralization', 'Java', 'Java Socket API', 'JCA', 'SSH Libraries', 'JavaFX']
+                },
+                bacteria: {
+                    title: 'AI-Based Bacteria Classification & Automated Colony Analysis',
+                    description: 'A custom feature-extraction and image-processing pipeline built from scratch in Python to automate the detection and biological classification of bacterial colonies.\n\nKey features:\n– Led a 4-member engineering team\n– Integrated the algorithmic backend with a responsive React dashboard for real-time reporting\n\n2025–2026.',
+                    tags: ['Applied Computer Vision', 'Python', 'React', 'Image Processing', 'Full-Stack Architecture']
                 }
             };
             const project = projects[projectId];
@@ -1410,10 +1453,10 @@
 
         function showAchievementDetail(achievementId) {
             const achievements = {
-                hackathon: {
-                    title: 'Secured 2nd — State Level Project Expo 2025',
-                    description: 'Achieved second place at the State Level Project Expo 2025, held at YIT Moodbiri, with an AI-driven solution for real-time data processing.\n\nHighlights:\n– Built a real-time object detection system\n– Python backend for the full pipeline\n– Efficient image-processing algorithms\n– Delivered as part of a 4-member team\n\nThis reflects strong technical execution under competitive conditions.',
-                    tags: ['Achievement', 'Competition', 'Python', 'PyTorch', 'Image Processing', 'Teamwork']
+                expo: {
+                    title: '2nd Place Winner — Project Expo, ISTE YIT Mudbidri',
+                    description: 'Recognized out of numerous teams for scalable architectural design and systems engineering.\n\nNovember 2025.',
+                    tags: ['Achievement', 'Competition', 'Systems Engineering', 'Architecture']
                 }
             };
             const achievement = achievements[achievementId];
@@ -1422,20 +1465,10 @@
 
         function showCertificateDetail(certId) {
             const certificates = {
-                aws: {
-                    title: 'AWS Certified Solutions Architect',
-                    description: 'Professional certification covering the design of distributed systems on Amazon Web Services.\n\nSkills validated:\n– Resilient architectures\n– High-performing systems\n– Secure applications and architectures\n– Cost-optimized architectures\n– Operational excellence\n\nIssued January 2024, valid until January 2027.',
-                    tags: ['AWS', 'Cloud Architecture', 'Solutions Design', 'Certification']
-                },
-                langchain: {
-                    title: 'Implementing AI Agents with LangChain',
-                    description: 'A course on building agentic applications with large language models using the LangChain framework.\n\nTopics covered:\n– LangChain fundamentals\n– Building AI agents\n– Prompt engineering\n– Memory systems\n– Tool integration\n– Production deployment\n\nCompleted September 2025.',
-                    tags: ['AI', 'LangChain', 'LLM', 'Python', 'Coursera']
-                },
-                ibm: {
-                    title: 'Machine Learning by IBM',
-                    description: 'A course covering supervised and unsupervised learning, from theory to implementation.\n\nCourse coverage:\n– Supervised learning (regression, classification)\n– Unsupervised learning (clustering, dimensionality reduction)\n– Model evaluation and validation\n– Feature engineering\n– Practical implementation\n\nCompleted May 2025.',
-                    tags: ['Machine Learning', 'IBM', 'Python', 'Data Science', 'AI']
+                mlops: {
+                    title: 'Machine Learning Operations (MLOps)',
+                    description: 'A course covering end-to-end deployment pipelines for machine learning systems.\n\nTopics covered:\n– Model packaging and versioning\n– Deployment pipelines\n– Production monitoring\n– Operational best practices for ML systems\n\nCompleted November 2025, Udemy.',
+                    tags: ['MLOps', 'Deployment', 'Udemy']
                 }
             };
             const cert = certificates[certId];
@@ -1473,6 +1506,21 @@
                     title: 'Git & GitHub',
                     description: 'Proficiency: 90%\n\nExperience with:\n– Branching strategies\n– Pull requests and code review\n– Repository management\n– CI/CD integration\n\nUsed daily across all projects.',
                     tags: ['Git', 'GitHub', 'Version Control', 'DevOps']
+                },
+                react: {
+                    title: 'React',
+                    description: 'Proficiency: 70%\n\nExperience with:\n– Component-driven frontend architecture\n– State management and hooks\n– REST API integration\n– Real-time dashboards\n\nUsed as the frontend for VaultNAS and the bacteria colony analysis dashboard.',
+                    tags: ['React', 'Frontend', 'JavaScript']
+                },
+                fastapi: {
+                    title: 'FastAPI / Flask',
+                    description: 'Proficiency: 75%\n\nExperience with:\n– REST API design\n– JWT authentication\n– Modular backend architecture\n– Private cloud networking protocols\n\nUsed to build the VaultNAS backend and earlier cloud server projects.',
+                    tags: ['FastAPI', 'Flask', 'REST API', 'Backend']
+                },
+                pytorch: {
+                    title: 'PyTorch / TensorFlow',
+                    description: 'Proficiency: 65%\n\nExperience with:\n– Model training and evaluation\n– Computer vision pipelines\n– Feature extraction and image processing\n\nUsed across the bacteria classification and object-tracking projects.',
+                    tags: ['PyTorch', 'TensorFlow', 'Deep Learning', 'Computer Vision']
                 }
             };
             const skill = skills[skillId];
